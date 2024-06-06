@@ -1,0 +1,114 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+.main-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  
+}
+.mobile-header {
+  max-width: 1000px;
+}
+.blog-container {
+  display: flex;
+  .blog-inner-container {
+    flex: 0 33%;
+}
+}
+@media only screen and (max-width:768px){
+  .blog-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.admin-items-container {
+  display: flex;
+  justify-content: center;
+}
+.admin-edit {
+  padding: 12px;
+  margin: 5px;
+  cursor: pointer;
+
+}
+.admin-delete {
+  padding: 12px;
+  margin: 5px;
+  cursor: pointer;
+  color: red;
+
+}
+// Blog Content
+.blog-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 1000px;
+  padding: 60px 25px;
+  img {
+    width: 100%;
+  }
+}
+.navbar-toggler{
+  border: transparent;
+}
+.navbar-toggler:focus{
+  box-shadow: none;
+}
+.navbar-toggler-icon {
+    background-image: none!important;
+    background-color: var(--bs-gray-800);
+    height: 2px;
+    width: 25px;
+    margin: 10px 0;
+    position: relative;
+    transition: all 0.35s ease-out;
+    transform-origin: center;
+  }
+  
+  .navbar-toggler-icon::before {
+    display: block;
+    background-color: var(--bs-gray-800);
+    height: 2px;
+    content: "";
+    position: relative;
+    top: -7px;
+    transition: all 0.15s ease-out;/*taken down to hide quicker*/
+    transform-origin: center;
+  }
+  
+  .navbar-toggler-icon::after {
+    display: block;
+    background-color: var(--bs-gray-800);
+    height: 2px;
+    content: "";
+    position: relative;
+    top: 5px;
+    transition: all 0.35s ease-out;
+    transform-origin: center;
+  }
+  
+  .navbar-dark .navbar-toggler-icon,
+  .navbar-dark .navbar-toggler-icon::before,
+  .navbar-dark .navbar-toggler-icon::after {
+    background-color: var(--bs-gray-100);
+  }
+  
+  .navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+    transform: rotate(45deg);
+  }
+  
+  .navbar-toggler:not(.collapsed) .navbar-toggler-icon::before {
+    opacity: 0;
+  }
+  
+  .navbar-toggler:not(.collapsed) .navbar-toggler-icon::after {
+    transform: rotate(-90deg) translateX(7px);
+  }
