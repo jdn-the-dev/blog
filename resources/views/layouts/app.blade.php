@@ -12,7 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=quicksand" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -44,10 +44,13 @@
                                 <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('about') }}">{{ __('Resources') }}</a>
+                                <a class="nav-link" href="{{ route('resources') }}">{{ __('Resources') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('about') }}"><i class="fa fa-instagram"></i></a>
+                                <a class="nav-link" href="{{ route('about') }}"><i class="fa-brands fa-instagram"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('about') }}"><i class="fa-brands fa-x-twitter"></i></a>
                             </li>
                         @else
                             <li class="nav-item">

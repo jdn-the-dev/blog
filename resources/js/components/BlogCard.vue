@@ -2,16 +2,22 @@
     <div class="blog-card-container">
         <div class="row justify-content-center">
             <div class="blog-card d-flex flex-column justify-content-center align-items-center" @click="navigate(id)">
+
                 <div class="blog-image">
                     <img :src="image" alt="">
                 </div>
-                
-                <div class="blog-title">{{ title }}</div>
-                <div class="blog-card-category-container">
-                    <div v-for="category in categories">
-                        {{category}}
+                <div class="info">
+                    <div class="blog-date">
+                        {{ date }}
+                    </div>
+                    <div class="blog-title">{{ title }}</div>
+                    <div class="blog-card-category-container">
+                        <div v-for="category in categories">
+                            {{ category }}
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -19,7 +25,7 @@
 
 <script>
     export default {
-        props: ['title', 'image', 'categories', 'id'],
+        props: ['title', 'image', 'categories', 'id', 'date'],
         mounted() {
             console.log('Component mounted.')
         },
@@ -36,6 +42,21 @@
     }
 </script>
 <style lang="scss" scoped>
+.blog-title {
+    font-weight: 700;
+        font-size: 12px;
+}
+.blog-date {
+        font-size: .65rem;
+}
+.info {
+    display: flex;
+        flex-direction: column;
+        z-index: 3;
+        padding: 16px 16px;
+        color: #000;
+        text-align: center;
+}
 .blog-card-container{
     display: flex;
     flex-wrap: wrap;

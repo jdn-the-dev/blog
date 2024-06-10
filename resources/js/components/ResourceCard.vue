@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="resource-card d-flex flex-column justify-content-center align-items-center" @click="navigate()">
                 <img :src="image" alt="" width="200">
-                <div class="resource-title">Title</div>
+                <div class="resource-title">{{title}}</div>
             </div>
         </div>
     </div>

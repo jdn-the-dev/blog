@@ -7,7 +7,7 @@
     <title>Home - JL</title>
     <style>
         body {
-            background: url("https://jaydonlynch.dev/img/white-trees.a344fc15.jpg") no-repeat 50% fixed;
+            background: url("{{ asset('images/white-trees.jpg') }}") no-repeat 50% fixed;
             background-size: cover;
         }
         .navbar-brand{

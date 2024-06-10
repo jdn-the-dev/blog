@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->uuid('id')->primary(); 
             $table->string('title')->nullable();
-            $table->string('blogHTML')->nullable();
+            $table->longText('blogHTML')->nullable();
             $table->string('image')->nullable();
             $table->json('category');
             $table->integer('view_count')->default(0);

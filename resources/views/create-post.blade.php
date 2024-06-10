@@ -16,12 +16,14 @@
         </div>
       @endif
       <div class="card p-3">
+        <label for="floatingInput">Date</label>
+        <input class="form-control" type="date" name="date">
         <label for="floatingInput">Title</label>
         <input class="form-control" type="text" name="title">
         <label for="floatingInput">Category</label>
         <input class="form-control" type="text" name="category">
         <label for="floatingTextArea">Content</label>
-        <quill-editor></quill-editor>
+        <quill-editor placeholder=""></quill-editor>
         <input type="hidden" name="blogHTML" id="floatingTextarea">
         <label for="formFile" class="form-label">Add Image</label>
         <img src="" alt="" class="img-blog">

@@ -7,24 +7,60 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+// About
+@import 'about';
+
 .main-content {
   max-width: 1000px;
   margin: 0 auto;
   
 }
-.mobile-header {
-  max-width: 1000px;
+.collapsing {
+  -webkit-transition: none;
+  transition: none;
+}
+.nav-item {
+  margin-right:32px;
+  font-size: 17px;
+  color: #fff;
+  text-decoration: underline 0.1em rgba(255, 255, 255, 0);
+  transition: text-decoration-color 300ms;;
+  text-underline-offset: 7px;
+  &:hover{
+
+    text-decoration-color: rgb(255, 255, 255);
+  }
 }
 .blog-container {
   display: flex;
   .blog-inner-container {
     flex: 0 33%;
 }
+
 }
 @media only screen and (max-width:768px){
   .blog-container {
     display: flex;
     flex-direction: column;
+  }
+  .nav-item {
+    text-align: center;
+    margin-right: unset;
+    padding: 12px;
+      transition: text-decoration-color 300ms;
+        text-underline-offset: 7px;
+    
+          text-decoration-color: rgb(255, 255, 255);
+  }
+  .navbar-collapse.show{
+        margin-top: 25%;
+          background-color: rgba(154, 154, 154,0.7);
+          border-radius: 12px;
+          border: 1px solid #fff;
+              position: absolute;
+        width: 70%;
+          top: 0;
+          left: 0;
   }
 }
 .admin-items-container {

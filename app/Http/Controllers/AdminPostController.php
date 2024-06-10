@@ -53,6 +53,7 @@ class AdminPostController extends Controller
         $post->blogHTML = $request->blogHTML;
         $post->image = $file_name;
         $post->category = $request->category;
+        $post->created_at = $request->date;
     
         $post->save();
         return redirect()->route('blog')->with('success', 'Post created successfully.');
