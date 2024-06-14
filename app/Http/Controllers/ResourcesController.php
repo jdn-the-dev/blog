@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
 class ResourcesController extends Controller
 {
@@ -32,7 +31,9 @@ class ResourcesController extends Controller
      */
     public function wallpaperIndex()
     {
-        return view('wallpaper');
+        $files = scandir(public_path('wallpaper'));
+        $images = array_values(array_filter($files, fn($file) => in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'png', 'gif'])));
+        return view('wallpaper', ['images' => $images]);
     }
 
 }

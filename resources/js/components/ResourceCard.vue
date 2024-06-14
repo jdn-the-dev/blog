@@ -1,7 +1,7 @@
 <template>
     <div class="resource-card-container">
         <div class="row justify-content-center">
-            <div class="resource-card d-flex flex-column justify-content-center align-items-center" @click="navigate(url)">
+            <div class="resource-card d-flex flex-column justify-content-center align-items-center" @click="navigate(resource)">
                 <img :src="image" alt="" width="200">
                 <div class="resource-title">{{title}}</div>
             </div>
@@ -11,7 +11,7 @@
 
 <script>
     export default {
-        props: ['title', 'image'],
+        props: ['title', 'image', 'resource'],
         mounted() {
             console.log('Component mounted.')
         },
@@ -21,8 +21,9 @@
             }
         },
         methods: {
-            navigate() {
-                window.location.href = `/resource/`;
+            navigate(resourceName) {
+                console.log(resourceName)
+                window.location.href = `/resource/${resourceName}`;
             }
         }
     }
