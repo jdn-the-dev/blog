@@ -41,11 +41,12 @@
                                 <a class="nav-link" href="{{ route('blog') }}">{{ __('Blog') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('resources') }}">{{ __('Resources') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
+                            </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('about') }}"><i class="fa-brands fa-instagram"></i></a>
                             </li>

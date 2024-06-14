@@ -25,4 +25,14 @@ class ResourcesController extends Controller
     {
         return view('resources');
     }
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function wallpaperIndex()
+    {
+        return view('wallpaper');
+    }
+
 }

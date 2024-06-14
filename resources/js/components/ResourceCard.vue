@@ -1,7 +1,7 @@
 <template>
     <div class="resource-card-container">
         <div class="row justify-content-center">
-            <div class="resource-card d-flex flex-column justify-content-center align-items-center" @click="navigate()">
+            <div class="resource-card d-flex flex-column justify-content-center align-items-center" @click="navigate(url)">
                 <img :src="image" alt="" width="200">
                 <div class="resource-title">{{title}}</div>
             </div>
