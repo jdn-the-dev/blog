@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ImageGalleryController;
 
 Auth::routes();
 
@@ -16,5 +17,8 @@ Route::get('/delete/{id?}', [App\Http\Controllers\AdminPostController::class, 'd
 Route::get('/edit-post/{id}', [App\Http\Controllers\AdminPostController::class, 'editIndex'])->name('edit-post');
 Route::post('/edit-post/{id}', [App\Http\Controllers\AdminPostController::class, 'editPost'])->name('edit-post');
 Route::match(array('POST'), '/store', [App\Http\Controllers\AdminPostController::class, 'store'])->name('store');
+
+Route::get('/resource/my-mind', [ImageGalleryController::class, 'index'])->name('my-mind');
+Route::post('/upload', [ImageGalleryController::class, 'upload'])->name('upload');
 
 

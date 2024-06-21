@@ -148,3 +148,69 @@
   .navbar-toggler:not(.collapsed) .navbar-toggler-icon::after {
     transform: rotate(-90deg) translateX(7px);
   }
+
+
+
+  .row-my-mind {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+
+.column-my-mind {
+    -ms-flex: 25%; /* IE10 */
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+    
+}
+
+.column-my-mind img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+    height: auto;
+    max-width: 300;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 800px) {
+    .column-my-mind {
+        -ms-flex: 50%;
+        flex: 50%;
+        max-width: 50%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .column-my-mind {
+        -ms-flex: 100%;
+        flex: 100%;
+        max-width: 100%;
+    }
+}
+
+.grid-my-mind {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 10px;
+  padding: 0 4px;
+}
+
+.grid-item-my-mind {
+  background: #fff;
+  border-radius: 5px;
+  padding: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-item-my-mind img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
