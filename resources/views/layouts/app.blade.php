@@ -36,45 +36,38 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('blog') }}">{{ __('Blog') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('resources') }}">{{ __('Resources') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('blog') }}">{{ __('Blog') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('resources') }}">{{ __('Resources') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
+                        </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('about') }}"><i class="fa-brands fa-instagram"></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('about') }}"><i class="fa-brands fa-x-twitter"></i></a>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('blog') }}">{{ __('Blog') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('create-post') }}">{{ __('Create Post') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                              document.getElementById('logout-form').submit();">
-                                 {{ __('Logout') }}
-                             </a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('about') }}"><i class="fa-brands fa-instagram"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('about') }}"><i class="fa-brands fa-x-twitter"></i></a>
+                        </li>
+                        @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('create-post') }}">{{ __('Create Post') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
 
-                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                 @csrf
-                             </form>
-                            </li>
-                        @endguest
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+                        @endauth
                     </ul>
                 </div>
             </div>
