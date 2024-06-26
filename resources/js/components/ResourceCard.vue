@@ -1,8 +1,11 @@
 <template>
     <div class="resource-card-container">
-        <div class="row justify-content-center">
-            <div class="resource-card d-flex flex-column justify-content-center align-items-center" @click="navigate(resource)">
-                <img :src="image" alt="" width="200">
+        <div class="row justify-content-center w-100">
+            <div class="resource-card d-flex flex-column justify-content-center align-items-center"
+                @click="navigate(resource)">
+                <span class="material-symbols-outlined resource-icon">
+                    {{icon}}
+                </span>
                 <div class="resource-title">{{title}}</div>
             </div>
         </div>
@@ -11,7 +14,7 @@
 
 <script>
     export default {
-        props: ['title', 'image', 'resource'],
+        props: ['title', 'icon', 'resource'],
         mounted() {
             console.log('Component mounted.')
         },
@@ -44,5 +47,12 @@
 }
 .resource-card {
     height: 100%;
+    .resource-icon {
+        font-size: 4rem;
+        padding-top: 1rem;
+    }
+    .resource-title {
+        padding: 1rem;
+    }
 }
 </style>

@@ -148,3 +148,13 @@
   .navbar-toggler:not(.collapsed) .navbar-toggler-icon::after {
     transform: rotate(-90deg) translateX(7px);
   }
+
+  .resource-btn{
+    background-color:#95a5a6;
+    border-radius: 0;
+    color: #fff;
+    
+    &:hover {
+      border: 1px solid #95a5a6;
+    }
+  }
