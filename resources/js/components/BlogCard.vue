@@ -12,7 +12,7 @@
                     </div>
                     <div class="blog-title">{{ title }}</div>
                     <div class="blog-card-category-container">
-                        <div v-for="category in categories">
+                        <div v-for="category in categories" :key="category">
                             {{ category }}
                         </div>
                     </div>
