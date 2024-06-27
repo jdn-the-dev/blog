@@ -52,7 +52,9 @@
         padding-top: 1rem;
     }
     .resource-title {
+        text-align: center;
         padding: 1rem;
     }
 }
+
 </style>
