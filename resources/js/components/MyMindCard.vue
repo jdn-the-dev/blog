@@ -39,7 +39,6 @@ export default {
 </script>
 
 <style scoped>
-/* Modal styles */
 /* Grid and Modal styles */
 .grid-my-mind {
     display: grid;
