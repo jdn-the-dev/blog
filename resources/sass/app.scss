@@ -29,6 +29,8 @@
   transition: none;
 }
 .nav-item {
+  display: flex;
+  align-items: center;
   margin-right:32px;
   font-size: 17px;
   color: #fff;
@@ -36,7 +38,6 @@
   transition: text-decoration-color 300ms;;
   text-underline-offset: 7px;
   &:hover{
-
     text-decoration-color: rgb(255, 255, 255);
   }
 }
@@ -94,7 +95,6 @@
 .blog-content {
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
   max-width: 1000px;
   padding: 60px 25px;

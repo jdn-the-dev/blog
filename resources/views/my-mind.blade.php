@@ -54,8 +54,10 @@ function randomHeight()
 @endsection
 
     <style>
-
-    </style>
+        .nav-item:hover{
+            text-decoration-color: #000 !important;
+            color: #000 !important;
+        }
     </style>
     <script>
         function openModal(imageSrc) {

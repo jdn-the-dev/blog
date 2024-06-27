@@ -20,9 +20,19 @@ export default {
         this.editor = new Quill(this.$refs.editor, {
             modules: {
                 toolbar: [
-                    [{ header: [1, 2, false] }],
-                    ['bold', 'italic', 'underline'],
-                    ['image', 'code-block'],
+                    [{ 'font': [] }],
+                    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                    [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
+                    [{ 'header': '1' }, { 'header': '2' }],           // custom button values
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                    [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
+                    [{ 'direction': 'rtl' }],                         // text direction
+                    [{ 'align': [] }],
+                    ['blockquote', 'code-block'],
+                    ['link', 'image', 'video'],
+                    ['clean']                                         // remove formatting button
                 ],
             },
             placeholder: 'Compose an epic...',
