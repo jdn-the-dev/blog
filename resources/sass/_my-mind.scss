@@ -79,29 +79,31 @@
             height: 200px;
             display: flex;
             justify-content: center;
-            margin: 1rem;
+            margin-bottom: 5rem;
         }
 
         .image {
             position: absolute;
-            width: 80%;
+            width: 300px;
             height: 200px;
             border-radius: 10px;
-            border: 1px solid #000;
         }
 
         .image:nth-child(1) {
             transform: rotate(-10deg);
             z-index: 1;
+            background: linear-gradient(45deg, #111 30%, #444 70%); 
         }
 
         .image:nth-child(2) {
             transform: rotate(10deg);
             z-index: 2;
+            background: linear-gradient(45deg, #333 30%, #666 70%);
         }
 
         .image:nth-child(3) {
             z-index: 3;
+            background: linear-gradient(45deg, #222 30%, #555 70%);
         }
 
         .button {

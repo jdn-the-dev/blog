@@ -28,3 +28,10 @@
     
   </div>
 @endsection
+
+    <style>
+        .nav-item:hover{
+            text-decoration-color: #000 !important;
+            color: #000 !important;
+        }
+    </style>
