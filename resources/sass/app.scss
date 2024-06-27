@@ -10,6 +10,15 @@
 // About
 @import 'about';
 
+// Resources
+@import 'resources';
+
+//My-Mind
+@import 'my-mind';
+
+//Navbar
+@import 'navbar';
+
 .main-content {
   max-width: 1000px;
   margin: 0 auto;
@@ -54,13 +63,14 @@
   }
   .navbar-collapse.show{
         margin-top: 25%;
-          background-color: rgba(154, 154, 154,0.7);
-          border-radius: 12px;
-          border: 1px solid #fff;
-              position: absolute;
-        width: 70%;
-          top: 0;
-          left: 0;
+        background-color: #fff;
+        border-radius: 12px;
+        border: 1px solid #fff;
+            position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 5;
   }
 }
 .admin-items-container {
@@ -187,7 +197,7 @@
     object-fit: cover;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
     .column-my-mind {
         -ms-flex: 50%;
         flex: 50%;
@@ -195,7 +205,7 @@
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
     .column-my-mind {
         -ms-flex: 100%;
         flex: 100%;

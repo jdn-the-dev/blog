@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 @section('content')
     <div class="container mt-5">
@@ -13,32 +12,63 @@
                     <button type="submit" class="btn btn-primary">Upload Image</button>
                 </div>
             </form>
-    
+
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
                 </div>
             @endif
         @endauth
-        <h1 class="text-center">My mind</h1>
-                <hr>
+        <div class="container-my-mind">
+            <div class="image"></div>
+            <div class="image"></div>
+            <div class="image"></div>
+            <div class="button">My Mind</div>
+        </div>
         @php
-            function randomHeight() {
-                return rand(150, 300); // Random height between 150px and 450px
-            }
+function randomHeight()
+{
+    return rand(150, 300); // Random height between 150px and 450px
+}
         @endphp
 
-<div class="grid-my-mind">
-    @foreach ($images as $index => $image)
-        @php
-            $height = randomHeight();
-            $rowSpan = ceil($height / 10); // Calculate row span based on the random height and base row height
-        @endphp
-        <div class="grid-item-my-mind" style="grid-row-end: span {{ $rowSpan }};">
-            <img src="{{ Storage::url($image->path) }}" alt="Image" style="height: {{ $height }}px; object-fit: cover;">
+        <div class="grid-my-mind">
+            @foreach ($images as $index => $image)
+                        @php
+    $height = randomHeight();
+    $rowSpan = ceil($height / 10); // Calculate row span based on the random height and base row height
+                        @endphp
+                        <my-mind-card img="{{ Storage::url($image->path) }}" height="{{ $height }}" rowspan="{{$rowSpan}}"></my-mind-card>
+                        <!--div class="grid-item-my-mind" style="grid-row-end: span {{ $rowSpan }};">
+                            <img src="{{ Storage::url($image->path) }}" alt="Image" style="height: {{ $height }}px; object-fit: cover;" onclick="openModal('{{ Storage::url($image->path) }}')">
+                        </div-->
+            @endforeach
         </div>
-    @endforeach
-</div>
+
+        <!-- Modal Structure -->
+        <div id="lightboxModal" class="modal" onclick="closeModal(event)">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img class="modal-content" id="lightboxImage">
+        </div>
     </div>
 @endsection
 
+    <style>
+
+    </style>
+    </style>
+    <script>
+        function openModal(imageSrc) {
+            var modal = document.getElementById("lightboxModal");
+            var modalImg = document.getElementById("lightboxImage");
+            modal.style.display = "block";
+            modalImg.src = imageSrc;
+        }
+
+        function closeModal() {
+            var modal = document.getElementById("lightboxModal");
+            if (event.target === modal || event.target.className === 'close') {
+                modal.style.display = "none";
+            }
+        }
+    </script>

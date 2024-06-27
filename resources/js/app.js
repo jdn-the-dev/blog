@@ -18,11 +18,13 @@ const app = createApp({});
 import BlogCard from './components/BlogCard.vue';
 import QuillEditor from './components/QuillEditor.vue';
 import ResourceCard from './components/ResourceCard.vue';
+import MyMindCard from './components/MyMindCard.vue';
 
 
 app.component('blog-card', BlogCard);
 app.component('quill-editor', QuillEditor);
 app.component('resource-card', ResourceCard);
+app.component('my-mind-card', MyMindCard);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
