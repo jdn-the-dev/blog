@@ -71,11 +71,21 @@
 
 .blog-card {
     height: 100%;
+    transition: 0.5s ease all;
+    
+        &:hover {
+            transform: scale(1.01);
+        }
 }
 .blog-image {
-    height: 200px;
     img {
-        height: 100%;
+        min-height: 200px;
+        display: block;
+        z-index: 1;
+        width: 100%;
+        min-height: 200px;
+        -o-object-fit: cover;
+        object-fit: cover;
     }
 }
 .blog-card-category-container{
