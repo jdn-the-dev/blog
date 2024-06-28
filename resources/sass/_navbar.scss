@@ -2,3 +2,12 @@
     height: 100vh;
     z-index: 5;
 }
+
+@media (max-width: 768px) {
+    .nav-item {
+        color: #000 !important;
+        display: flex;
+        justify-content: center;
+        font-size: 1.5rem !important;
+    }
+}

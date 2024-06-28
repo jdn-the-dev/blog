@@ -25,6 +25,11 @@
         .navbar-toggler-icon::before{
             background-color: #fff !important;
         }
+        @media (max-width: 768px) {
+            .nav-link {
+                color: #000 !important;
+            }
+        }
     </style>
 </head>
 <body>
