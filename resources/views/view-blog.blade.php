@@ -8,7 +8,7 @@
         <h2 style="font-size: 32px">{{$post->title}}</h2>
         <h4 class="d-flex flex-row align-items-center justify-content-center" style="font-size: 14px">{{date_format(date_create($post->created_at), "M j, Y")}} <div> &nbsp;&nbsp;<i class="fa fa-eye" style="font-size: 12px"></i> {{$post->view_count}}</div></h4>
     </div>
-    <section class="blog-content">
+    <section class="blog-content ql-editor">
         {!! str_replace('class="ql-code-block-container"','style="background-color: #000; color: #fff; padding: 12px; border-radius: 1rem"',$post->blogHTML)  !!}
     </section>
 @endsection

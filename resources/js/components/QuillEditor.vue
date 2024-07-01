@@ -6,6 +6,8 @@ import Quill from "quill";
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.bubble.css";
 import "quill/dist/quill.snow.css";
+import ImageResize from 'quill-image-resize-module-react';
+Quill.register('modules/imageResize', ImageResize);
 
 export default {
     props: ['placeholder'],
@@ -34,6 +36,10 @@ export default {
                     ['link', 'image', 'video'],
                     ['clean']                                         // remove formatting button
                 ],
+                imageResize: {
+                    parchment: Quill.import('parchment'),
+                    modules: ['Resize', 'DisplaySize']
+                }
             },
             placeholder: 'Compose an epic...',
             theme: 'snow', // or 'bubble'
@@ -57,6 +63,6 @@ export default {
 </script>
 <style>
 .editor {
-    height: 300px;
+    height: 100%;
 }
 </style>
