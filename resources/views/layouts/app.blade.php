@@ -18,6 +18,17 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <style>
+        .navbar-collapse {
+            opacity: 0;
+            max-height: 0;
+            transition: opacity 0.5s ease, max-height 0.5s ease;
+        }
+        .navbar-collapse.show {
+            opacity: 1;
+            max-height: 500px; /* Adjust this value based on the height of your content */
+        }
+    </style>
 </head>
 <body>
     <div id="app">
