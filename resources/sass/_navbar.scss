@@ -2,9 +2,18 @@
     height: 100vh;
     z-index: 5;
 }
+.navbar-collapse {
+    max-height: 0;
+    transition: opacity 0.5s ease, max-height 0.5s ease;
+}
 
+.navbar-collapse.show {
+    opacity: 1;
+    max-height: 500px;
+    /* Adjust this value based on the height of your content */
+}
 @media (max-width: 768px) {
-    .nav-item {
+    .nav-item, .nav-link {
         color: #000 !important;
         display: flex;
         justify-content: center;

@@ -63,7 +63,6 @@
     padding-left: 0;
     justify-content: center;
     align-items: center;
-    height: 300px;
     margin: 1rem;
 
     cursor: pointer;
