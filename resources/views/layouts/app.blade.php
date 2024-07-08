@@ -13,9 +13,9 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=quicksand" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-
+    <script src="https://cdn.tiny.cloud/1/vfdbwktzoffwzd4if6pn7svs89nlqjex5v1oq92a4j4gz7m1/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
