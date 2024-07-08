@@ -37,7 +37,6 @@ export default {
                     ['clean']                                         // remove formatting button
                 ],
                 imageResize: {
-                    parchment: Quill.import('parchment'),
                     modules: ['Resize', 'DisplaySize']
                 }
             },
@@ -63,6 +62,6 @@ export default {
 </script>
 <style>
 .editor {
-    height: 100%;
+    height: 500px;
 }
 </style>
