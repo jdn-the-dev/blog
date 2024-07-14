@@ -1,6 +1,16 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - JL</title>
+</head>
+
+<body>
+  @extends('layouts.app')
+
+  @section('content')
   <div class="about-container">
     <span class="about">
       Hello!<br><br>
@@ -16,8 +26,9 @@
     <div class="brand-container">
       <div class="brand"><a href="https://www.microsoft.com/en-us/about"><img src="{{ asset('images/microsoft.png') }}"
             alt="microsoft-logo" srcset="">Microsoft</a></div>
-      <div class="brand"><a href="https://www.carnegiehall.org/About"><img src="{{ asset('images/The-Carnegie-Hall-Logo.png') }}"
-            alt="carnegie-hall-logo" srcset="">Carnegie Hall</a></div>
+      <div class="brand"><a href="https://www.carnegiehall.org/About"><img
+            src="{{ asset('images/The-Carnegie-Hall-Logo.png') }}" alt="carnegie-hall-logo" srcset="">Carnegie Hall</a>
+      </div>
       <div class="brand"><a href="https://www.pasadenaplayhouse.org/about/"><img src="{{ asset('images/pp-logo.png') }}"
             alt="pasadena-playhouse-logo" srcset=""><br>Pasadena Playhouse</a></div>
       <div class="brand"><a href="https://k12.sfsymphony.org/About-SFS"><img src="{{ asset('images/sf-symphony.png') }}"
@@ -25,13 +36,16 @@
       <div class="brand"><a href="https://www.total.dev/"><img src="{{asset('images/total-logo.png')}}"
             alt="pasadena-playhouse-logo" srcset="">Total Developers</a></div>
     </div>
-    
-  </div>
-@endsection
 
-    <style>
-        .nav-item:hover{
-            text-decoration-color: #000 !important;
-            color: #000 !important;
-        }
-    </style>
+  </div>
+  @endsection
+
+  <style>
+    .nav-item:hover {
+      text-decoration-color: #000 !important;
+      color: #000 !important;
+    }
+  </style>
+</body>
+
+</html>
