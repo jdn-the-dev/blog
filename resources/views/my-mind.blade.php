@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <title>My Mind - JL</title>
     <div class="container mt-5">
         @auth
             <!-- The user is authenticated. -->

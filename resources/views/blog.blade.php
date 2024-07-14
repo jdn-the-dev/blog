@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<title>Blog - JL</title>
   <!-- Message if a post is posted successfully -->
   @if ($message = Session::get('success'))
   <div class="alert alert-success">
