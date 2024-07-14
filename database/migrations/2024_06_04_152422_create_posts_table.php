@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->longText('blogHTML')->nullable();
             $table->string('image')->nullable();
-            $table->json('category');
+            $table->json('category')->nullable();
             $table->integer('view_count')->default(0);
             $table->timestamps();
         });

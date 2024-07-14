@@ -40,6 +40,7 @@ class AdminPostController extends Controller
         $request->validate([
         'title' => 'required',
         'blogHTML' => 'required',
+        'category' => 'required',
         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
     
