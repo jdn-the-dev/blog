@@ -62,6 +62,6 @@ export default {
 </script>
 <style>
 .editor {
-    height: 500px;
+    min-height: 500px;
 }
 </style>
