@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="grid-item-my-mind">
-            <img :src="img" alt="Image" :style="{ height: height+'px', objectFit: 'cover'}"
+            <img :src="img" alt="Image" :style="{ height: 'fit-content', objectFit: 'cover'}"
                 @click="openModal(img)">
         </div>
     </div>
