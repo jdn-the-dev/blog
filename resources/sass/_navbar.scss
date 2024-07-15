@@ -9,7 +9,7 @@
 
 .navbar-collapse.show {
     opacity: 1;
-    max-height: 500px;
+    max-height: fit-content;
     /* Adjust this value based on the height of your content */
 }
 .under-line {
