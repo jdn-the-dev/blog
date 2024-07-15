@@ -89,4 +89,10 @@ class AdminPostController extends Controller
 
         return redirect()->route('blog')->with('success', 'Post created successfully.');
     }
+
+    public function adminPostIndex()
+    {
+        $posts = Post::all(); // Fetch all posts
+        return view('admin.posts.index', compact('posts'));
+    }
 }
