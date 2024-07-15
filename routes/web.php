@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageGalleryController;
+use App\Http\Controllers\AdminPostController;
 
 
 //['register' => false]
@@ -22,5 +23,12 @@ Route::match(array('POST'), '/store', [App\Http\Controllers\AdminPostController:
 
 Route::get('/resource/my-mind', [ImageGalleryController::class, 'index'])->name('my-mind');
 Route::post('/upload', [ImageGalleryController::class, 'upload'])->name('upload');
+
+
+//Admin
+
+
+Route::get('/admin/posts', [AdminPostController::class, 'adminPostIndex'])->name('admin.posts.index');
+
 
 
