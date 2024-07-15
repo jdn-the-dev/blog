@@ -115,7 +115,7 @@
   <script>
     // JavaScript to handle the loading indicator
     window.addEventListener('load', function() {
-      document.getElementById('loading-indicator').style.display = 'block';
+      document.getElementById('loading-indicator').style.display = 'none';
     });
   </script>
 </body>
