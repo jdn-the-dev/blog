@@ -37,9 +37,6 @@
 
         <div class="grid-my-mind">
             @foreach ($images as $index => $image)
-                        @php
-                            $height = 300;
-                        @endphp
                         <my-mind-card img="{{ Storage::url($image->path) }}" height="{{ $height }}"></my-mind-card>
                         <!--div class="grid-item-my-mind" style="grid-row-end: span {{ $rowSpan }};">
                             <img src="{{ Storage::url($image->path) }}" alt="Image" style="height: {{ $height }}px; object-fit: cover;" onclick="openModal('{{ Storage::url($image->path) }}')">
