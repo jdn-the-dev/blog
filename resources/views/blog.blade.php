@@ -33,10 +33,10 @@
       position: absolute;
       width: 64px;
       height: 64px;
-      border: 2px solid #3498db;
+      border: 2px solid #000;
       border-radius: 50%;
       animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-      border-color: #3498db transparent transparent transparent;
+      border-color: #000 transparent transparent transparent;
     }
 
     .spinner div:nth-child(1) {
@@ -115,7 +115,7 @@
   <script>
     // JavaScript to handle the loading indicator
     window.addEventListener('load', function() {
-      document.getElementById('loading-indicator').style.display = 'none';
+      document.getElementById('loading-indicator').style.display = 'block';
     });
   </script>
 </body>
