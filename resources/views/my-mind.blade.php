@@ -25,18 +25,12 @@
             <div class="image"></div>
             <div class="button">My Mind</div>
         </div>
-        @php
-function randomHeight()
-{
-    return rand(150, 300); // Random height between 150px and 450px
-}
-        @endphp
 
         <div class="grid-my-mind">
             @foreach ($images as $index => $image)
                         @php
-    $height = randomHeight();
-    $rowSpan = ceil($height / 10); // Calculate row span based on the random height and base row height
+                        $height = 300;
+                        $rowSpan = ceil($height / 10); // Calculate row span based on the random height and base row height
                         @endphp
                         <my-mind-card img="{{ Storage::url($image->path) }}" height="{{ $height }}" rowspan="{{$rowSpan}}"></my-mind-card>
                         <!--div class="grid-item-my-mind" style="grid-row-end: span {{ $rowSpan }};">
