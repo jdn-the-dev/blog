@@ -12,6 +12,10 @@
     max-height: 500px;
     /* Adjust this value based on the height of your content */
 }
+.under-line {
+        max-width: 1140px;
+            margin: 0 auto;
+}
 @media (max-width: 768px) {
     .nav-item, .nav-link {
         color: #000 !important;
@@ -19,4 +23,7 @@
         justify-content: center;
         font-size: 1.5rem !important;
     }
+        .under-line {
+            display: none;
+        }
 }

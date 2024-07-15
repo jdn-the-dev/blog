@@ -75,7 +75,7 @@
                 </div>
             </div>
         </nav>
-
+            <hr class="under-line">
         <main class="py-4 main-content">
             @yield('content')
         </main>
