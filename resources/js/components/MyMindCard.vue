@@ -9,9 +9,9 @@
 
 <script>
 export default {
-    props: ['img', 'height', 'rowSpan'],
+    props: ['img'],
     mounted() {
-        console.log(this.img, this.height, this.rowSpan)
+
     },
     data() {
         return {
