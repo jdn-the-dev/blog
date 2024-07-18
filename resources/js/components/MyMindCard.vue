@@ -39,7 +39,9 @@ export default {
 </script>
 
 <style scoped>
-
+.my-mind-outside-container {
+    height: fit-content;
+}
 /* Media queries for responsive design */
 @media (max-width: 768px) {
     .modal-content {
@@ -57,7 +59,6 @@ export default {
     }
     .grid-item-my-mind{
         max-height: 450px;
-        width: 150px;
     }
 }
 </style>
