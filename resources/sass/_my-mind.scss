@@ -7,7 +7,8 @@
         }
 
         .grid-item-my-mind img {
-            width: 100%;
+            width: 80%;
+            height: auto;
             cursor: pointer;
         }
 
@@ -59,6 +60,9 @@
                 font-size: 30px;
                 right: 25px;
                 top: 10px;
+            }
+            .grid-my-mind {
+                grid-template-columns: repeat(2, 1fr) !important; /* 2 cards per row */
             }
         }
 
