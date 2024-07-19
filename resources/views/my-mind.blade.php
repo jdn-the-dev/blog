@@ -6,6 +6,13 @@
     <title>My Mind - JL</title>
 </head>
 <body>
+    <div id="loading-indicator">
+        <div class="spinner">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
     @extends('layouts.app')
 @section('content')
     
@@ -69,6 +76,10 @@
                 modal.style.display = "none";
             }
         }
+                // JavaScript to handle the loading indicator
+                window.addEventListener('load', function() {
+          document.getElementById('loading-indicator').style.display = 'none';
+        });
     </script>
 </body>
 </html>

@@ -11,6 +11,13 @@
 </head>
 
 <body>
+    <div id="loading-indicator">
+        <div class="spinner">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
     @extends('layouts.app')
     @section('content')
 
@@ -26,6 +33,13 @@
             color: #000 !important;
         }
     </style>
+
+    <script>
+                // JavaScript to handle the loading indicator
+                window.addEventListener('load', function() {
+          document.getElementById('loading-indicator').style.display = 'none';
+        });
+    </script>
 </body>
 
 </html>

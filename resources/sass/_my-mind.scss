@@ -7,9 +7,10 @@
         }
 
         .grid-item-my-mind img {
-            width: 80%;
-            height: auto;
+            width: 100%; /* Ensures the image scales with the container */
+            height: auto; /* Maintains the aspect ratio */
             cursor: pointer;
+            display: block; /* Ensures the image behaves as a block element */
         }
 
         .modal {
@@ -61,7 +62,7 @@
                 right: 25px;
                 top: 10px;
             }
-            
+
             .grid-my-mind {
                 grid-template-columns: repeat(2, 1fr) !important; /* 2 cards per row */
             }
