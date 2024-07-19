@@ -16,7 +16,7 @@
     export default {
         props: ['title', 'icon', 'resource'],
         mounted() {
-            console.log('Component mounted.')
+
         },
         data(){
             return {
