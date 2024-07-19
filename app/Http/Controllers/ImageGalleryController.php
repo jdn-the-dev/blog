@@ -11,7 +11,7 @@ class ImageGalleryController extends Controller
 {
     public function index()
     {
-        $images = Image::all();
+        $images = Image::orderBy('created_at', 'desc')->get();
         return view('my-mind', compact('images'));
     }
 
