@@ -42,5 +42,11 @@ app.component('my-mind-card', MyMindCard);
  * an "id" attribute of "app". This element is included with the "auth"
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
-
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.onclick = function(event) {
+      // Prevent the default action
+      event.preventDefault();
+      document.getElementById('loading-indicator').style.display = 'flex';
+    };
+  });
 app.mount('#app');
