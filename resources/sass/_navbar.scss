@@ -25,6 +25,10 @@
     .nav-link {
         width: 100%;
     }
+    .nav-link:active,
+    .nav-link:focus {
+        text-decoration: underline;
+    }
     .nav-item, .nav-link {
         color: #000 !important;
         display: flex;
