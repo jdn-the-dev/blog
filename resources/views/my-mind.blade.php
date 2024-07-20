@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Mind - JL</title>
+
 </head>
 <body>
     <div id="loading-indicator">
@@ -27,13 +28,14 @@
                 <div class="mb-3">
                     <button type="submit" class="btn btn-primary">Upload Image</button>
                 </div>
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
             </form>
 
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
+
         @endauth
         <div class="container-my-mind">
             <div class="image"></div>
@@ -44,7 +46,10 @@
 
         <div class="grid-my-mind">
             @foreach ($images as $index => $image)
-                        <my-mind-card img="{{ Storage::url($image->path) }}"></my-mind-card>
+                <my-mind-card img="{{ Storage::url($image->path) }}"></my-mind-card>
+                @auth
+                    <span class="delete-icon" onclick="deleteImage({{ $image->id }})">🗑️</span>
+                @endauth
             @endforeach
         </div>
 
@@ -81,8 +86,32 @@
                 modal.style.display = "none";
             }
         }
-                // JavaScript to handle the loading indicator
-                window.addEventListener('load', function() {
+        @auth
+            function deleteImage(imageId) {
+                if (confirm('Are you sure you want to delete this image?')) {
+                    fetch(`/delete-image/${imageId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        }
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                window.location.reload();
+                            } else {
+                                alert('Failed to delete the image.');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error deleting image:', error);
+                            alert('An error occurred while trying to delete the image.');
+                        });
+                }
+            }
+        @endauth
+        // JavaScript to handle the loading indicator
+        window.addEventListener('load', function() {
           document.getElementById('loading-indicator').style.display = 'none';
         });
     </script>
