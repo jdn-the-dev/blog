@@ -4,44 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Mind - JL</title>
-    <style>
-        .nav-item:hover {
-            text-decoration-color: #000 !important;
-            color: #000 !important;
-        }
-
-        .my-mind-card {
-            position: relative;
-            display: flex;
-            align-items: center;
-            flex-direction: column-reverse;
-            margin: 10px;
-        }
-
-        .delete-icon {
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            padding: 5px;
-            cursor: pointer;
-        }
-
-        .delete-icon:hover {
-            background-color: rgba(255, 0, 0, 0.8);
-        }
-    </style>
 </head>
 <body>
     <div id="loading-indicator">
         <div class="spinner">
-            <div></div>
-            <div></div>
-            <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
-    </div>
-
+      </div>
     @extends('layouts.app')
-    @section('content')
-
+@section('content')
+    
     <div class="container mt-5">
         @auth
             <!-- The user is authenticated. -->
@@ -61,7 +35,6 @@
                 </div>
             @endif
         @endauth
-
         <div class="container-my-mind">
             <div class="image"></div>
             <div class="image"></div>
@@ -70,18 +43,9 @@
         </div>
 
         <div class="grid-my-mind">
-            @if($images->isEmpty())
-                <p>No images available.</p>
-            @else
-                @foreach ($images as $index => $image)
-                    <div class="my-mind-card">
-                        <img src="{{ Storage::url($image->path) }}" alt="Image" onclick="openModal('{{ Storage::url($image->path) }}')">
-                        @auth
-                        <span class="delete-icon" onclick="deleteImage({{ $image->id }})">🗑️</span>
-                        @endauth
-                    </div>
-                @endforeach
-            @endif
+            @foreach ($images as $index => $image)
+                        <my-mind-card img="{{ Storage::url($image->path) }}"></my-mind-card>
+            @endforeach
         </div>
 
         <!-- Modal Structure -->
@@ -95,8 +59,14 @@
             @endif
         </div>
     </div>
-    @endsection
+@endsection
 
+    <style>
+        .nav-item:hover{
+            text-decoration-color: #000 !important;
+            color: #000 !important;
+        }
+    </style>
     <script>
         function openModal(imageSrc) {
             var modal = document.getElementById("lightboxModal");
@@ -105,40 +75,15 @@
             modalImg.src = imageSrc;
         }
 
-        function closeModal(event) {
+        function closeModal() {
             var modal = document.getElementById("lightboxModal");
             if (event.target === modal || event.target.className === 'close') {
                 modal.style.display = "none";
             }
         }
-        @auth
-        function deleteImage(imageId) {
-            if (confirm('Are you sure you want to delete this image?')) {
-                fetch(`/delete-image/${imageId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    }
-                })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.reload();
-                    } else {
-                        alert('Failed to delete the image.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error deleting image:', error);
-                    alert('An error occurred while trying to delete the image.');
-                });
-            }
-        }
-        @endauth
-
-        // JavaScript to handle the loading indicator
-        window.addEventListener('load', function() {
-            document.getElementById('loading-indicator').style.display = 'none';
+                // JavaScript to handle the loading indicator
+                window.addEventListener('load', function() {
+          document.getElementById('loading-indicator').style.display = 'none';
         });
     </script>
 </body>
