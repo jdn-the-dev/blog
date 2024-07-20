@@ -23,6 +23,8 @@ Route::match(array('POST'), '/store', [App\Http\Controllers\AdminPostController:
 
 Route::get('/resource/my-mind', [ImageGalleryController::class, 'index'])->name('my-mind');
 Route::post('/upload', [ImageGalleryController::class, 'upload'])->name('upload');
+Route::delete('/delete-image/{id}', [ImageGalleryController::class, 'destroy'])->name('image.destroy');
+
 
 
 //Admin

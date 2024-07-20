@@ -28,4 +28,13 @@ class ImageGalleryController extends Controller
 
         return redirect()->route('my-mind')->with('success', 'Image Uploaded Successfully');
     }
+
+    public function destroy($id)
+    {
+        $image = Image::findOrFail($id);
+        Storage::disk('public')->delete($image->path);
+        $image->delete();
+
+        return response()->json(['success' => 'Image deleted successfully']);
+    }
 }
