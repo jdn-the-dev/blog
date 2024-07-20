@@ -19,7 +19,7 @@
     <div class="container mt-5">
         @auth
             <!-- The user is authenticated. -->
-            <form action="{{ route('upload') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('upload') }}" method="POST" enctype="multipart/form-data" style="margin:4rem">
                 @csrf
                 <div class="mb-3">
                     <input type="file" name="image" class="form-control" required>
@@ -52,6 +52,7 @@
         <div id="lightboxModal" class="modal" onclick="closeModal(event)">
             <span class="close" onclick="closeModal()">&times;</span>
             <img class="modal-content" id="lightboxImage">
+            <div class="lightbox-modal-date">Date: {{date("F j, Y", strtotime($image->created_at))}}</div>
         </div>
     </div>
 @endsection
