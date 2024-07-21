@@ -27,13 +27,13 @@
       margin-left: 1rem;
     }
     .page-item{
-      color:#000;
+      color:#000 !important;
       &hover{
-        color: #000;
+        color: #000 !important;
       }
     }
     .page-item.active{
-      background-color: #000;
+      background-color: #000 !important;
     }
 }
 
