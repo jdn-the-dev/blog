@@ -24,7 +24,7 @@
 
     <div class="d-flex flex-wrap justify-content-center resources-container" id="resources-container">
         <resource-card title="Free Wallpaper" resource="wallpaper" icon="wallpaper_slideshow"></resource-card>
-        <resource-card title="My Mind (Creativity)" resource="my-mind" icon="cognition"></resource-card>
+        <resource-card title="My Mind (Creativity)" resource="my-mind" icon="fluorescent"></resource-card>
     </div>
     @endsection
     <style>
