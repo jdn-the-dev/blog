@@ -19,6 +19,15 @@
 //Navbar
 @import 'navbar';
 
+.paginate-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .pagination {
+      margin-left: 1rem;
+    }
+}
+
 .main-content {
   max-width: 1000px;
   margin: 0 auto;
