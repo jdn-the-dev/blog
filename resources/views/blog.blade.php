@@ -105,6 +105,7 @@
           date="{{date_format(date_create($post->created_at), "M j, Y")}}"></blog-card>
         </div>
       @endforeach
+      {{$posts->links()}}
     @else
       <p>No Posts found</p>
     @endif
