@@ -1,9 +1,7 @@
 <template>
-    <div class="my-mind-outside-container">
-        <div class="grid-item-my-mind">
-            <img :src="img" alt="Image" :style="{ maxHeight: '450px', width:'100%'}"
-                @click="openModal(img)">
-        </div>
+    <div class="grid-item-my-mind">
+        <img :src="img" alt="Image" :style="{ maxHeight: '450px', width:'100%'}"
+            @click="openModal(img)">
     </div>
 </template>
 
@@ -39,9 +37,6 @@ export default {
 </script>
 
 <style scoped>
-.my-mind-outside-container {
-    height: fit-content;
-}
 /* Media queries for responsive design */
 @media (max-width: 768px) {
     .modal-content {
@@ -52,10 +47,6 @@ export default {
         font-size: 30px;
         right: 25px;
         top: 10px;
-    }
-    .my-mind-outside-container {
-        display: flex;
-        justify-content: center;
     }
     .grid-item-my-mind{
         max-height: 450px;
