@@ -51,6 +51,10 @@
         .nav-link {
             color: #fff !important;
         }
+        .nav-link:hover {
+          text-decoration-color: #fff !important;
+  
+        }
         .navbar-toggler-icon{
             background-color: #fff !important;
         }
@@ -121,7 +125,6 @@
         }
     
         .nav-item:hover {
-          text-decoration-color: #000 !important;
           color: #000 !important;
         }
       </style>
