@@ -46,7 +46,7 @@
 
         <div class="grid-my-mind">
             @foreach ($images as $index => $image)
-                <my-mind-card img="{{ Storage::url($image->path) }}"></my-mind-card>
+                <my-mind-card img="{{ Storage::url($image->path) }}" date="{{ date('F j, Y', strtotime($image->created_at)) }}"></my-mind-card>
                 @auth
                     <span class="delete-icon" onclick="deleteImage({{ $image->id }})">🗑️</span>
                 @endauth
@@ -57,11 +57,7 @@
         <div id="lightboxModal" class="modal" onclick="closeModal(event)">
             <span class="close" onclick="closeModal()">&times;</span>
             <img class="modal-content" id="lightboxImage">
-            @if(isset($image) && isset($image->created_at))
-                <div class="lightbox-modal-date">Date: {{ date('F j, Y', strtotime($image->created_at)) }}</div>
-            @else
-                <div class="lightbox-modal-date">Date: N/A</div>
-            @endif
+            <div class="lightbox-modal-date" id="lightbox-modal-date">Date: </div>
         </div>
     </div>
 @endsection
@@ -73,13 +69,6 @@
         }
     </style>
     <script>
-        function openModal(imageSrc) {
-            var modal = document.getElementById("lightboxModal");
-            var modalImg = document.getElementById("lightboxImage");
-            modal.style.display = "block";
-            modalImg.src = imageSrc;
-        }
-
         function closeModal() {
             var modal = document.getElementById("lightboxModal");
             if (event.target === modal || event.target.className === 'close') {

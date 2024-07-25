@@ -1,13 +1,13 @@
 <template>
     <div class="grid-item-my-mind">
         <img :src="img" alt="Image" :style="{ maxHeight: '450px', width:'100%'}"
-            @click="openModal(img)">
+            @click="openModal(img, date)">
     </div>
 </template>
 
 <script>
 export default {
-    props: ['img'],
+    props: ['img', 'date'],
     mounted() {
 
     },
@@ -17,21 +17,17 @@ export default {
         }
     },
     methods: {
-        openModal(imageSrc) {
+        openModal(imageSrc, date) {
             var modal = document.getElementById("lightboxModal");
             var modalImg = document.getElementById("lightboxImage");
+            let modalImgDate = document.getElementById("lightbox-modal-date");
             if (modal && modalImg) { 
                 modal.style.display = "block";
                 modalImg.src = imageSrc;
+                modalImgDate.innerText = date;
             }
 
         },
-        closeModal(event) {
-                var modal = document.getElementById("lightboxModal");
-                if ((event.target === modal || event.target.className === 'close') && modal) {
-                    modal.style.display = "none";
-                }
-        }
     }
 }
 </script>
