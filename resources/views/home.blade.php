@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home - JL</title>
         <!-- Essential Meta Tags -->
@@ -11,7 +9,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         
         <!-- Title and Description -->
-        <meta name="description" content="Explore articles, tips, and resources on programming. ">
+        <meta name="description" content="Explore blog posts, tips, and resources on tech/programming. ">
         
         <!-- Keywords -->
         <meta name="keywords" content="Jaydon Lynch, web development, Rust, JavaScript, CSS, Python, coding tips, programming, web design">
@@ -22,7 +20,7 @@
         <!-- Open Graph / Facebook -->
         <meta property="og:title" content="Jaydon Lynch - Programming Insights and Resources">
         <meta property="og:description" content="Explore expert articles, tips, and resources on web development. Join Jaydon Lynch's community for the latest updates and insights on Laravel, JavaScript, CSS, and more.">
-        <meta property="og:image" content="https://jaydonlynch.dev/path/to/your/image.jpg">
+        <meta property="og:image" content="https://www.jaydonlynch.dev/favicon.ico">
         <meta property="og:url" content="https://jaydonlynch.dev">
         <meta property="og:type" content="website">
         
@@ -30,7 +28,7 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="Jaydon Lynch - Programming Insights and Resources">
         <meta name="twitter:description" content="Explore expert articles, tips, and resources on web development. Join Jaydon Lynch's community for the latest updates and insights on Laravel, JavaScript, CSS, and more.">
-        <meta name="twitter:image" content="https://jaydonlynch.dev/path/to/your/image.jpg">
+        <meta name="twitter:image" content="https://www.jaydonlynch.dev/favicon.ico">
         
         <!-- Robots -->
         <meta name="robots" content="index, follow">
