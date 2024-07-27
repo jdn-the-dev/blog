@@ -13,14 +13,14 @@
         <meta name="author" content="Jaydon Lynch">
         
         <!-- Open Graph / Facebook -->
-        <meta property="og:title" content="{{$post->title}}">
+        <meta property="og:title" content="JL - Blog">
         <meta property="og:description" content="{{$post->title}}">
         <meta property="og:image" content="{{ asset('images/' . $post->image)}}">
         <meta property="og:type" content="website">
         
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="{{$post->title}}">
+        <meta name="twitter:title" content="JL - Blog">
         <meta name="twitter:description" content="{{$post->title}}">
         <meta name="twitter:image" content="{{ asset('images/' . $post->image)}}">
         
