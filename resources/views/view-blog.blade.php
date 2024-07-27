@@ -61,5 +61,8 @@
             .ql-editor {
                 margin: 1rem;
             }
+            .ql-editor img {
+                width: 100% !important;
+            }
         }
     </style>
