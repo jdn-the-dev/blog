@@ -1,7 +1,7 @@
 <template>
     <div class="blog-card-container">
         <div class="row justify-content-center">
-            <div class="blog-card d-flex flex-column justify-content-center align-items-center" @click="navigate(id)">
+            <a class="blog-card d-flex flex-column justify-content-center align-items-center" :href="'/blog/' + id">
 
                 <div class="blog-image">
                     <img :src="image" alt="">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
 
-            </div>
+            </a>
         </div>
     </div>
 </template>
@@ -33,11 +33,6 @@
                 categories: this.categories.split(","),
             }
         },
-        methods: {
-            navigate(id) {
-                window.location.href = `/blog/${id}`;
-            }
-        }
     }
 </script>
 <style lang="scss" scoped>
@@ -70,6 +65,7 @@
 .blog-card {
     height: 100%;
     transition: 0.5s ease all;
+    text-decoration: none;
     
         &:hover {
             transform: scale(1.01);
