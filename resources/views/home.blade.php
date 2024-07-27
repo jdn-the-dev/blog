@@ -18,7 +18,7 @@
         <meta name="author" content="Jaydon Lynch">
         
         <!-- Open Graph / Facebook -->
-        <meta property="og:title" content="Jaydon Lynch - Programming Insights and Resources">
+        <meta property="og:title" content="Jaydon Lynch - Tech Insights and Resources">
         <meta property="og:description" content="Explore expert articles, tips, and resources on web development. Join Jaydon Lynch's community for the latest updates and insights on Laravel, JavaScript, CSS, and more.">
         <meta property="og:image" content="https://www.jaydonlynch.dev/favicon.ico">
         <meta property="og:url" content="https://jaydonlynch.dev">
@@ -26,7 +26,7 @@
         
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Jaydon Lynch - Programming Insights and Resources">
+        <meta name="twitter:title" content="Jaydon Lynch - Tech Insights and Resources">
         <meta name="twitter:description" content="Explore expert articles, tips, and resources on web development. Join Jaydon Lynch's community for the latest updates and insights on Laravel, JavaScript, CSS, and more.">
         <meta name="twitter:image" content="https://www.jaydonlynch.dev/favicon.ico">
         

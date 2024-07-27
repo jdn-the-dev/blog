@@ -2,6 +2,7 @@
 
 @section('content')
 <head>
+    <title>{{$post->title}} - JL</title>
             <!-- Title and Description -->
         <meta name="description" content="{{$post->title}}">
         
