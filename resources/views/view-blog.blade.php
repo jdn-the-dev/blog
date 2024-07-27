@@ -56,7 +56,7 @@
             }
             .post-title {
                 margin: 1rem;
-                font-size: 1.5rem;
+                font-size: 1.5rem !important;
             }
             .ql-editor {
                 margin: 1rem;
