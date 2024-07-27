@@ -2,7 +2,7 @@
 
 @section('content')
 <head>
-    <title>{{$post->title}} - JL</title>
+    <title>JL - Blog</title>
             <!-- Title and Description -->
         <meta name="description" content="{{$post->title}}">
         
