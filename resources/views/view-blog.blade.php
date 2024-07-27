@@ -3,7 +3,7 @@
 @section('content')
 <head>
             <!-- Title and Description -->
-        <meta name="description" content="Explore blog posts, tips, and resources on tech/programming. ">
+        <meta name="description" content="{{$post->title}}">
         
         <!-- Keywords -->
         <meta name="keywords" content="Jaydon Lynch, web development, Rust, JavaScript, CSS, Python, coding tips, programming, web design">
@@ -14,14 +14,14 @@
         <!-- Open Graph / Facebook -->
         <meta property="og:title" content="{{$post->title}}">
         <meta property="og:description" content="{{$post->title}}">
-        <meta property="og:image" content="{{$post->image}}">
+        <meta property="og:image" content="{{ asset('images/' . $post->image)}}">
         <meta property="og:type" content="website">
         
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="{{$post->title}}">
         <meta name="twitter:description" content="{{$post->title}}">
-        <meta name="twitter:image" content="{{$post->image}}">
+        <meta name="twitter:image" content="{{ asset('images/' . $post->image)}}">
         
         <!-- Robots -->
         <meta name="robots" content="index, follow">
