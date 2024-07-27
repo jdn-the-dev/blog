@@ -8,7 +8,9 @@
         
         <!-- Keywords -->
         <meta name="keywords" content="Jaydon Lynch, web development, Rust, JavaScript, CSS, Python, coding tips, programming, web design">
-        
+        <meta name="thumbnail" content="{{ asset('images/' . $post->image)}}" />
+
+
         <!-- Author -->
         <meta name="author" content="Jaydon Lynch">
         <meta itemprop="name" content="JL - Blog">
