@@ -116,6 +116,9 @@
   padding: 60px 25px;
 }
 .ql-editor {
+  tab-size: 20;
+  -moz-tab-size: 20;
+  -o-tab-size: 20;
   height: fit-content !important;
 }
 .navbar-toggler{
