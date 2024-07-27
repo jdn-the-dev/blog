@@ -11,11 +11,14 @@
         
         <!-- Author -->
         <meta name="author" content="Jaydon Lynch">
-        
+        <meta itemprop="name" content="JL - Blog">
+        <meta itemprop="description" content="{{$post->title}}">
+        <meta itemprop="image" content="{{$post->title}}">
+
         <!-- Open Graph / Facebook -->
         <meta property="og:title" content="JL - Blog">
         <meta property="og:description" content="{{$post->title}}">
-        <meta property="og:image" content="{{ asset('images/' . $post->image)}}">
+        <meta property="og:image" content="{{$post->title}}">
         <meta property="og:type" content="website">
         
         <!-- Twitter -->
