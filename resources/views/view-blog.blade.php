@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-@section('content')
 <head>
     <title>JL - Blog</title>
             <!-- Title and Description -->
@@ -38,6 +37,8 @@
         <!-- Favicon -->
         <link rel="icon" href="https://www.jaydonlynch.dev/favicon.ico" type="image/x-icon">
 </head>
+@section('content')
+
     <div class="d-flex justify-content-center align-items-center flex-column">
         <h2 class="post-title" style="font-size: 32px; text-align: center; margin: 1rem">{{$post->title}}</h2>
         <h4 class="d-flex flex-row align-items-center justify-content-center" style="font-size: 14px">{{date_format(date_create($post->created_at), "M j, Y")}} <div> &nbsp;&nbsp;<i class="fa fa-eye" style="font-size: 12px"></i> {{$post->view_count}}</div></h4>
