@@ -119,6 +119,9 @@
   -moz-tab-size: 20;
   -o-tab-size: 20;
   height: fit-content !important;
+  p {
+    text-indent: 20px;
+  }
   span {
     word-break: keep-all;
   }
