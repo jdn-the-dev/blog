@@ -119,6 +119,9 @@
   -moz-tab-size: 20;
   -o-tab-size: 20;
   height: fit-content !important;
+  span {
+    word-break: keep-all;
+  }
 }
 .navbar-toggler{
   border: transparent;
