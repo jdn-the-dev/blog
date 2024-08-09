@@ -22,6 +22,7 @@
       height: 100%;
       overflow: auto;
       background-color: rgba(0, 0, 0, 0.9);
+      z-index: 100000;
     }
 
     .lightbox-content {
