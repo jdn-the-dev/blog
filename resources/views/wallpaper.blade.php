@@ -28,7 +28,7 @@
       margin: auto;
       display: block;
       width: 90%;
-      height: 80%;
+      height: auto;
       max-width: 700px;
     }
 
