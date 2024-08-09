@@ -40,6 +40,7 @@
       font-size: 40px;
       font-weight: bold;
       transition: 0.3s;
+      z-index: 11110000000;
     }
 
     .lightbox-close:hover,
