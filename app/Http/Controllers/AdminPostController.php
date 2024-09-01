@@ -25,7 +25,8 @@ class AdminPostController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        //get posts on delete
+        $posts = Post::orderBy('created_at', 'desc')->paginate(5);
 
         return view('blog', ['posts' => $posts]);
     }
