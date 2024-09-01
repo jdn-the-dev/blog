@@ -27,7 +27,6 @@
     export default {
         props: ['title', 'image', 'categories', 'id', 'date'],
         mounted() {
-            console.log('Component mounted.')
         },
         data(){
             return {
