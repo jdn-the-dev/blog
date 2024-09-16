@@ -21,7 +21,11 @@ class AdminPostController extends Controller
     //Delete post based on ID
     public function deletePost($id) {
         try {
-            Post::where('id',$id)->delete();
+            $post = Post::find($id);
+            if ($post) {
+                $post->delete();
+            }
+
         } catch (\Throwable $th) {
             throw $th;
         }
