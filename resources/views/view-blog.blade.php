@@ -32,7 +32,7 @@
         <meta name="robots" content="index, follow">
         
         <!-- Canonical URL -->
-        <link rel="canonical" href="https://jaydonlynch.dev">
+        <link rel="canonical" href="{{ url()->current() }}">
         
         <!-- Favicon -->
         <link rel="icon" href="https://www.jaydonlynch.dev/favicon.ico" type="image/x-icon">

@@ -16,6 +16,9 @@
                             {{ category }}
                         </div>
                     </div>
+                    <div class="read-more">
+                        View post
+                    </div>
                 </div>
 
             </a>
@@ -96,5 +99,11 @@
         padding-left: 5px;
         padding-right: 5px;
     }
+}
+.read-more {
+    width: 100%;
+    font-size: 0.7rem;
+    text-decoration: underline;
+    color: #2e86de;
 }
 </style>
