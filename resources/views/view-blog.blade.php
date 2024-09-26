@@ -69,7 +69,7 @@
                 margin: 1rem;
             }
             .ql-editor img {
-                width: 100% !important;
+                width: 90% !important;
             }
         }
     </style>
