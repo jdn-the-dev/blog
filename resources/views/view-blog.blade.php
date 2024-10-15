@@ -50,7 +50,7 @@
 
     <style>
         .blog-content p {
-            word-break:break-all;
+            word-break: unset;
             line-height: 1.4rem;
         }
         .nav-item:hover{
@@ -69,7 +69,7 @@
                 margin: 1rem;
             }
             .ql-editor img {
-                width: 100% !important;
+                width: 90% !important;
             }
         }
     </style>
