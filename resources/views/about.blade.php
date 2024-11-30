@@ -14,7 +14,7 @@
   <div class="about-container">
     <span class="about">
       Hello!<br><br>
-      My name is <b>Jaydon James Amal Lynch</b>. I'm currenly a web developer at <a
+      My name is <b>Jaydon James Amal Lynch</b>. I'm currently a web developer at <a
         href="https://www.theclearinghouse.org/About/Owner-Banks">The Clearing House</a>. <br><br>
       On this site, I talk about creativity, code, crypto, as well as
       some tools and strategies to help programmers navigate the world.
