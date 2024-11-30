@@ -121,8 +121,8 @@
       cursor: pointer;
       font-size: 1rem;
       transition: background-color 0.3s, box-shadow 0.3s;
-          border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
+          border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
     }
 
     .search-btn:hover {
