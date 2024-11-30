@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 <head>
-    <title>JL - Blog</title>
+        <title>JL - {{$post->title}}</title>
             <!-- Title and Description -->
         <meta name="description" content="{{$post->title}}">
         
