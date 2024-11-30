@@ -29,10 +29,8 @@ class AdminPostController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
-        //get posts on delete
-        $posts = Post::orderBy('created_at', 'desc')->paginate(5);
+        return redirect()->route('blog')->with('success', 'Post deleted successfully.');
 
-        return view('blog', ['posts' => $posts]);
     }
     //Create Post Screen
     public function createIndex()
