@@ -187,7 +187,7 @@
     /* Optional - adjust for different screen sizes */
     @media (max-width: 767px) {
       .category-select {
-        max-width: 100%;
+        max-width: 4rem;
         /* Allows flexibility on small screens */
         font-size: 0.8rem;
       }
