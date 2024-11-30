@@ -64,6 +64,84 @@
       text-decoration-color: #000 !important;
       color: #000 !important;
     }
+
+
+/* Container for category dropdown inside the search bar */
+.category-select {
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  max-width: 150px; /* Limit dropdown width */
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.category-select:focus {
+  border-color: #888;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+/* Search Input */
+.search-input {
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #444;
+  border-left: none; /* Seamless transition with category dropdown */
+  padding: 10px;
+  border-radius: 0;
+  outline: none;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.search-input::placeholder {
+  color: #bbb;
+}
+
+.search-input:focus {
+  border-color: #888;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+/* Search Button */
+.search-btn {
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #444;
+  border-left: none;
+  padding: 10px 15px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.search-btn:hover {
+  background-color: #222;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 767px) {
+  .category-select {
+    max-width: 120px; /* Adjust dropdown width on smaller screens */
+    font-size: 0.8rem;
+  }
+
+  .search-btn {
+    padding: 10px; /* Adjust padding for smaller buttons */
+    font-size: 0.9rem;
+  }
+
+  .search-input {
+    font-size: 0.9rem;
+  }
+}
+
+
   </style>
 </head>
 <body>
@@ -85,7 +163,49 @@
     </div>
   @endif
 
-  <div class="d-flex flex-wrap justify-content-evenly blog-container">
+  <!-- Search Bar and Sort Dropdown -->
+<div class="container mt-4">
+  <div class="row">
+    <!-- Search Bar with Embedded Category Dropdown -->
+    <div class="col-12">
+      <form action="{{ route('blog') }}" method="GET" class="position-relative">
+        <!-- Search Input -->
+        <div class="d-flex">
+          <!-- Category Dropdown Inside -->
+          <div class="input-group-prepend">
+            <select 
+              name="category" 
+              class="category-select form-control" 
+              onchange="this.form.submit()">
+              <option value="all" {{ request('category') == 'all' ? 'selected' : '' }}>All</option>
+              @foreach($categories as $cat => $count)
+                <option value="{{ $cat }}" {{ request('category') == $cat ? 'selected' : '' }}>
+                  {{ $cat }} ({{ $count }})
+                </option>
+              @endforeach
+            </select>
+          </div>
+          <input 
+            type="text" 
+            name="search" 
+            class="form-control search-input" 
+            placeholder="Search posts by title..." 
+            value="{{ request('search') }}">
+          <!-- Search Button -->
+          <button type="submit" class="btn search-btn" style="background-color: #000; color:#fff; margin-left: 1rem">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  <div class="d-flex flex-wrap justify-content-evenly blog-container mt-4">
     @if (count($posts) > 0)
       @foreach ($posts as $post)
       <div class="blog-inner-container">
