@@ -13,12 +13,9 @@
   @section('content')
   <div class="about-container">
     <span class="about">
-      Hello there!<br><br>
-      I’m <b>Jaydon James Amal Lynch</b>, a web developer at <a href="https://www.theclearinghouse.org/About/Owner-Banks">The Clearing House</a>. Welcome to my little corner of the internet!<br><br>
-      Here, I share thoughts and tips on <b>creativity</b>, <b>coding</b>, <b>crypto</b>, and the tools and strategies that make a programmer's life smoother and more exciting.<br><br>
-      I’m also an <b>INFJ-T</b> personality type!<br><br>
-      And if you're looking for fresh content, I publish a new blog post every month on the <b>last Saturday</b>. There’s always something new to explore, so feel free to check back often!
-    </span>
+      <b>I'm Jaydon – a developer and creator.</b>
+      <br><br>
+      I began my journey crafting websites and implementing solutions for businesses, but over time, I’ve expanded into a mix of things—from building applications and exploring blockchain technology to creating tutorials on coding and finance. I also make YouTube content that dives into tech, business, and crypto. Born in Jamaica and raised in the U.S., I’m passionate about bringing innovation and creativity into every project I work on.</span>
     <div></div>
     <br>
     <div class="previous-title"><span>Previous work at:</span></div>
