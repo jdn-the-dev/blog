@@ -17,15 +17,15 @@
         <meta name="author" content="Jaydon Lynch">
         <meta name="thumbnail" content="{{ asset('images/j-train.jpg')}}" />
         <!-- Open Graph / Facebook -->
-        <meta property="og:title" content="Jaydon Lynch - developer and creator">
+        <meta property="og:title" content="A developer and creator.">
         <meta property="og:description" content="I began my journey crafting websites and implementing solutions for businesses, but over time, I’ve expanded into a mix of things—from building applications and exploring blockchain technology to creating tutorials on coding and finance. I also make YouTube content that dives into tech, business, and crypto. Born in Jamaica and raised in the U.S., I’m passionate about bringing innovation and creativity into every project I work on.">
-        <meta property="og:image" content="https://www.jaydonlynch.dev/favicon.ico">
+        <meta property="og:image" content="{{ asset('images/j-train.jpg')}}" />
         <meta property="og:url" content="https://jaydonlynch.dev">
         <meta property="og:type" content="website">
         
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image">
-        <meta property="og:title" content="Jaydon Lynch - developer and creator">
+        <meta property="og:title" content="A developer and creator.">
         <meta property="og:description"
           content="I began my journey crafting websites and implementing solutions for businesses, but over time, I’ve expanded into a mix of things—from building applications and exploring blockchain technology to creating tutorials on coding and finance. I also make YouTube content that dives into tech, business, and crypto. Born in Jamaica and raised in the U.S., I’m passionate about bringing innovation and creativity into every project I work on.">
         <meta name="twitter:image" content="{{ asset('images/j-train.jpg')}}" />
