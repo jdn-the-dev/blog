@@ -40,8 +40,16 @@
         <!-- Favicon -->
         <link rel="icon" href="https://www.jaydonlynch.dev/favicon.ico" type="image/x-icon">
     <style>
+      html {
+        background-color: #fff;
+        height: 100%;
+        overflow-y: hidden;
+      }
         body {
-            background: url("{{ asset('images/white-trees.jpg') }}") no-repeat 50% fixed;
+          margin:0.5rem !important;
+          border-radius: 12px;
+          height: 98.5%;
+            background: url("{{ asset('images/j-train.jpg') }}") no-repeat 50% fixed;
             background-size: cover;
         }
         .navbar-brand{
@@ -53,6 +61,9 @@
         .nav-link:hover {
           text-decoration-color: #fff !important;
   
+        }
+        .under-line {
+            color: #fff !important;
         }
         .navbar-toggler-icon{
             background-color: #fff !important;
@@ -66,6 +77,11 @@
         @media (max-width: 768px) {
             .nav-link {
                 color: #000 !important;
+            }
+            body {
+              margin: unset !important;
+              border-radius: unset;
+              height: 100%;
             }
         }
         /* Loading Indicator Styles */
@@ -137,14 +153,9 @@
           <div></div>
         </div>
       </div>
+
     @extends('layouts.app')
     @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-            </div>
-        </div>
-    </div>
     @endsection
 
     <script>
