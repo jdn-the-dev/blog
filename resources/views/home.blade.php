@@ -6,9 +6,7 @@
         <!-- Essential Meta Tags -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta name="thumbnail" content="https://www.jaydonlynch.dev/favicon.ico">
-        
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">        
         <!-- Title and Description -->
         <meta name="description" content="Explore blog posts, tips, and resources on tech/programming. ">
         
@@ -17,7 +15,7 @@
         
         <!-- Author -->
         <meta name="author" content="Jaydon Lynch">
-        
+        <meta name="thumbnail" content="{{ asset('images/j-train.jpg')}}" />
         <!-- Open Graph / Facebook -->
         <meta property="og:title" content="Jaydon Lynch - Tech Insights and Resources">
         <meta property="og:description" content="Explore expert articles, tips, and resources on web development. Join Jaydon Lynch's community for the latest updates and insights on Laravel, JavaScript, CSS, and more.">
