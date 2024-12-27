@@ -78,11 +78,6 @@
             .nav-link {
                 color: #000 !important;
             }
-            body {
-              margin: unset !important;
-              border-radius: unset;
-              height: 100%;
-            }
         }
         /* Loading Indicator Styles */
         #loading-indicator {
