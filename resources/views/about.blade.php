@@ -37,7 +37,7 @@
       <b>I'm Jaydon – a developer and creator.</b>
       <br><br>
 
-I began my journey making websites and implementing solutions for businesses, but over time, I’ve expanded into a mix of things—from building applications and exploring blockchain technology to creating tutorials on coding and finance. I also make YouTube content that dives into tech, business, and crypto. Along the way, I’ve embraced the intersection of life and productivity, sharing insights as a developer and creator. From coding and creative projects to practical tips for living a balanced, productive life, my journey is focused on growth, innovation, and inspiring others. Born in Jamaica and raised in the U.S., I’m passionate about bringing creativity and innovation into every project I work on.
+I began my journey making websites and implementing solutions for businesses, but over time, I’ve expanded into a mix of things—from building applications and exploring blockchain technology to creating tutorials on coding and finance. I also make YouTube content that dives into tech, business, and crypto. <br><br>Along the way, I’ve embraced the intersection of life and productivity, sharing insights as a developer and creator. From coding and creative projects to practical tips for living a balanced, productive life, my journey is focused on growth, innovation, and inspiring others. Born in Jamaica and raised in the U.S., I’m passionate about bringing creativity and innovation into every project I work on.<br><br>I post every last Saturday of the month.
 
 
 
