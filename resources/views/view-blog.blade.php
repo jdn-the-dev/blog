@@ -21,6 +21,8 @@
         <meta property="og:description" content="{{$post->title}}">
         <meta property="og:image" content="{{ asset('images/' . $post->image)}}" />
         <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ url()->current() }}">
+
         
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image">
