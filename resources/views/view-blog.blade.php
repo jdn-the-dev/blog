@@ -19,7 +19,7 @@
         <!-- Open Graph / Facebook -->
         <meta property="og:title" content="{{$post->title}}">
         <meta property="og:description" content="{{$post->title}}">
-        <meta property="og:image" content="{{ asset('images/' . $post->image)}}" />
+        <meta name ="image" property="og:image" content="{{ asset('images/' . $post->image)}}" />
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ url()->current() }}">
 
