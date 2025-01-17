@@ -24,7 +24,7 @@
         
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content={{$post->title}}>
+        <meta name="twitter:title" content="{{$post->title}}">
         <meta name="twitter:description" content="{{$post->title}}">
         <meta name="twitter:image" content="{{ asset('images/' . $post->image)}}">
         
