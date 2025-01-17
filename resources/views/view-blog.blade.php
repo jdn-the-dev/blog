@@ -15,6 +15,7 @@
         <meta itemprop="name" content="{{$post->title}}">
         <meta itemprop="description" content="{{$post->title}}">
         <meta itemprop="image" content="{{ asset('images/' . $post->image)}}" />
+        <meta name="thumbnail" content="{{ asset('images/' . $post->image)}}" />
 
         <!-- Open Graph / Facebook -->
         <meta property="og:title" content="{{$post->title}}">
