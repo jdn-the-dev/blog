@@ -1,6 +1,6 @@
-@extends('layouts.app')
-
-<head>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
         <title>JL - {{$post->title}}</title>
             <!-- Title and Description -->
         <meta name="description" content="{{$post->title}}">
@@ -40,6 +40,10 @@
         <!-- Favicon -->
         <link rel="icon" href="https://www.jaydonlynch.dev/favicon.ico" type="image/x-icon">
 </head>
+<body>
+    @extends('layouts.app')
+
+
 @section('content')
 
     <div class="d-flex justify-content-center align-items-center flex-column">
@@ -76,3 +80,5 @@
             }
         }
     </style>
+</body>
+</html>
