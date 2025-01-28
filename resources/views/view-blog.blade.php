@@ -3,7 +3,7 @@
     <head>
         <title>JL - {{$post->title}}</title>
             <!-- Title and Description -->
-        <meta name="description" content="{{$post->title}}">
+        <meta name="description" content="{{Str::limit(strip_tags($post->blogHTML), 160)}}">
         
         <!-- Keywords -->
         <meta name="keywords" content="Jaydon Lynch, web development, Rust, JavaScript, CSS, Python, coding tips, programming, web design">
@@ -13,13 +13,13 @@
         <!-- Author -->
         <meta name="author" content="Jaydon Lynch">
         <meta itemprop="name" content="{{$post->title}}">
-        <meta itemprop="description" content="{{$post->title}}">
+        <meta itemprop="description" content="{{Str::limit(strip_tags($post->blogHTML), 160)}}">
         <meta itemprop="image" content="{{ asset('images/' . $post->image)}}" />
         <meta name="thumbnail" content="{{ asset('images/' . $post->image)}}" />
 
         <!-- Open Graph / Facebook -->
         <meta property="og:title" content="{{$post->title}}">
-        <meta property="og:description" content="{{$post->title}}">
+        <meta property="og:description" content="{{Str::limit(strip_tags($post->blogHTML), 160)}}">
         <meta name ="image" property="og:image" content="{{ asset('images/' . $post->image)}}" />
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ url()->current() }}">
@@ -28,7 +28,7 @@
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="{{$post->title}}">
-        <meta name="twitter:description" content="{{$post->title}}">
+        <meta name="twitter:description" content="{{Str::limit(strip_tags($post->blogHTML), 160)}}">
         <meta name="twitter:image" content="{{ asset('images/' . $post->image)}}">
         
         <!-- Robots -->
