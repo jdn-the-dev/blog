@@ -2,13 +2,12 @@
 <html lang="en">
     <head>
         <title>JL - {{$post->title}}</title>
-            <!-- Title and Description -->
+        <!-- Title and Description -->
         <meta name="description" content="{{Str::limit(strip_tags($post->blogHTML), 160)}}">
         
         <!-- Keywords -->
         <meta name="keywords" content="Jaydon Lynch, web development, Rust, JavaScript, CSS, Python, coding tips, programming, web design">
         <meta name="thumbnail" content="{{ asset('images/' . $post->image)}}" />
-
 
         <!-- Author -->
         <meta name="author" content="Jaydon Lynch">
@@ -24,7 +23,6 @@
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ url()->current() }}">
 
-        
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="{{$post->title}}">
@@ -39,10 +37,9 @@
         
         <!-- Favicon -->
         <link rel="icon" href="https://www.jaydonlynch.dev/favicon.ico" type="image/x-icon">
-</head>
+    </head>
 <body>
     @extends('layouts.app')
-
 
 @section('content')
 
@@ -50,9 +47,16 @@
         <h2 class="post-title" style="font-size: 32px; text-align: center; margin: 1rem">{{$post->title}}</h2>
         <h4 class="d-flex flex-row align-items-center justify-content-center" style="font-size: 14px">{{date_format(date_create($post->created_at), "M j, Y")}} <div> &nbsp;&nbsp;<i class="fa fa-eye" style="font-size: 12px"></i> {{$post->view_count}}</div></h4>
     </div>
+    
     <section class="blog-content ql-editor">
-        {!! str_replace('class="ql-code-block-container"', 'style="background-color: #000; color: #fff; padding: 12px; border-radius: 1rem"', $post->blogHTML)  !!}
+        <!-- Ensure proper rendering of code blocks -->
+        {!! str_replace(
+            'class="ql-code-block-container"',
+            'style="background-color: #000; color: #fff; padding: 12px; border-radius: 1rem;"',
+            $post->blogHTML
+        ) !!}
     </section>
+
 @endsection
 
     <style>
@@ -60,13 +64,33 @@
             word-break: unset;
             line-height: 1.4rem;
         }
-        .nav-item:hover{
+
+        .ql-editor pre {
+            white-space: pre-wrap; /* Preserve spaces and line breaks */
+            font-family: monospace;
+            color: #fff;
+            padding: 12px;
+            border-radius: 5px;
+            overflow: auto; /* Enable scrolling for long code blocks */
+        }
+        .ql-ui {
+            display: none !important;
+            margin: 1rem;
+        }
+
+        .ql-editor code {
+            display: block;
+            font-family: monospace;
+        }
+
+        .nav-item:hover {
             text-decoration-color: #000 !important;
             color: #000 !important;
         }
+
         @media (max-width: 768px) {
             .blog-content p {
-                word-break:unset;
+                word-break: unset;
             }
             .post-title {
                 margin: 1rem;
