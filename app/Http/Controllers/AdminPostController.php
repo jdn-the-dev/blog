@@ -21,13 +21,16 @@ class AdminPostController extends Controller
     //Delete post based on ID
     public function deletePost($id) {
         try {
-            Post::where('id',$id)->delete();
+            $post = Post::find($id);
+            if ($post) {
+                $post->delete();
+            }
+
         } catch (\Throwable $th) {
             throw $th;
         }
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        return redirect()->route('blog')->with('success', 'Post deleted successfully.');
 
-        return view('blog', ['posts' => $posts]);
     }
     //Create Post Screen
     public function createIndex()
@@ -92,7 +95,8 @@ class AdminPostController extends Controller
 
     public function adminPostIndex()
     {
-        $posts = Post::all(); // Fetch all posts
+        $posts = Post::orderBy('created_at', 'desc')->get(); // Sort by creation date in ascending order
         return view('admin.posts.index', compact('posts'));
     }
+
 }

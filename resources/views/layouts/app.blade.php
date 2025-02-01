@@ -9,9 +9,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=quicksand" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
     <!-- Scripts -->
@@ -47,11 +45,11 @@
                             <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://www.instagram.com/_jaydonlync/"><i class="fa-brands fa-instagram"></i></a>
+                        <li class="nav-item" style="text-decoration: none;">
+                            <a class="nav-link" href="https://www.instagram.com/jaydoncodes/"><i class="fa-brands fa-instagram"></i></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://www.x.com/_jdn__"><i class="fa-brands fa-x-twitter"></i></a>
+                        <li class="nav-item" style="text-decoration: none;">
+                            <a class="nav-link" href="https://www.x.com/_jdn__" ><i class="fa-brands fa-x-twitter"></i></a>
                         </li>
                         @auth
                             <li class="nav-item">

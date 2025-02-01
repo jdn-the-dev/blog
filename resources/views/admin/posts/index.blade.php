@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +19,7 @@
                     <th>ID</th>
                     <th>Title</th>
                     <th>View Count</th>
+                    <th>Creation Date</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +28,7 @@
                         <td>{{ $post->id }}</td>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->view_count }}</td>
+                        <td>{{ $post->created_at->format('Y-m-d H:i:s') }}</td>
                     </tr>
                 @endforeach
             </tbody>

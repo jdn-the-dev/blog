@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div id="loading-indicator">
+    <div id="loading-indicator" style="background-color: rgba(255, 255, 255, 1);">
         <div class="spinner">
           <div></div>
           <div></div>
