@@ -52,8 +52,8 @@
         <!-- Ensure proper rendering of code blocks -->
         {!! str_replace(
             'class="ql-code-block-container"',
-            'style="background-color: #000; color: #fff; padding: 12px; border-radius: 1rem;"',
-            $post->blogHTML
+            ' class="ql-code-block-container" style="background-color: #000; color: #fff; padding: 12px; border-radius: 1rem;"',
+            html_entity_decode($post->blogHTML)
         ) !!}
     </section>
 

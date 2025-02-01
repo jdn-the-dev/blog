@@ -9,11 +9,11 @@ import "quill/dist/quill.bubble.css";
 import "quill/dist/quill.snow.css";
 import ImageResize from 'quill-image-resize-module-react';
 import hljs from 'highlight.js';
-import "highlight.js/styles/github.css"; // Choose any preferred theme
-import javascript from 'highlight.js/lib/languages/javascript';
+import php from 'highlight.js/lib/languages/php';
 
-// Then register the languages you need
-hljs.registerLanguage('javascript', javascript);
+import "highlight.js/styles/atom-one-dark.css";
+
+hljs.registerLanguage('php', php);
 Quill.register('modules/imageResize', ImageResize);
 
 export default {
@@ -52,6 +52,15 @@ export default {
 
         this.editor.root.innerHTML = this.placeholder ?? "";
         this.editor.on("text-change", this.update);
+
+        // Parse language information from the HTML content
+        const content = this.editor.root.innerHTML;
+        this.editor.root.innerHTML = content.replace(
+            /<pre><code class="language-([^"]*)">([\s\S]*?)<\/code><\/pre>/g,
+            (match, language, code) => {
+                return `<div class="ql-code-block" data-language="${language}">${this.decodeSpaces(code)}</div>`;
+            }
+        );
     },
 
     methods: {
@@ -59,13 +68,14 @@ export default {
             let content = this.editor.root.innerHTML;
             // Convert Quill's div-based code block to <pre><code> to preserve tabs and spaces
             content = content.replace(
-                /<div class="ql-code-block">([\s\S]*?)<\/div>/g,
-                (match, code) => {
-                    return `<pre><code>${this.encodeSpaces(code)}</code></pre>`;
+                /<div class="ql-code-block" data-language="([^"]*)">([\s\S]*?)<\/div>/g,
+                (match, language, code) => {
+                    return `<pre><code class="language-${language}">${this.encodeSpaces(code)}</code></pre>`;
                 }
             );
             let new_content = this.replaceSpacesInQlCodeBlocks(content);
             document.querySelector("#floatingTextarea").value = new_content;
+            console.log(new_content)
             this.$emit(
                 "update:modelValue",
                 this.editor.getText() ? content : ""
@@ -85,12 +95,18 @@ export default {
             return htmlContent.replace(
                 /<div class="ql-code-block"[^>]*>([\s\S]*?)<\/div>/g,
                 (match, codeLine) => {
-                // Replace each space character with &nbsp;
-                const modifiedContent = codeLine.replace(/(?<!<[^>]*) /g, '&nbsp;');
-                return `<div class="ql-code-block">${modifiedContent}</div>`;
+                    // Replace each space character with &nbsp;
+                    const modifiedContent = codeLine.replace(/(?<!<[^>]*) /g, '&nbsp;');
+                    return `<div class="ql-code-block">${modifiedContent}</div>`;
                 }
             );
-        }
+        },
+        decodeSpaces(text) {
+            return text
+                .replace(/&nbsp;/g, ' ')
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>');
+        },
     },
 };
 </script>
