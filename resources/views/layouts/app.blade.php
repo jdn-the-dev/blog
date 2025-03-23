@@ -44,10 +44,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
                         </li>
-
+                        <li class="nav-item" style="text-decoration: none;">
+                            <a class="nav-link" href="https://github.com/jdn-the-dev"><i class="fa-brands fa-github"></i></a>
+                        </li>
                         <li class="nav-item" style="text-decoration: none;">
                             <a class="nav-link" href="https://www.instagram.com/jaydoncodes/"><i class="fa-brands fa-instagram"></i></a>
                         </li>
+
                         <li class="nav-item" style="text-decoration: none;">
                             <a class="nav-link" href="https://www.x.com/_jdn__" ><i class="fa-brands fa-x-twitter"></i></a>
                         </li>
