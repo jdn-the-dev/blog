@@ -60,7 +60,13 @@ I began my journey making websites and implementing solutions for businesses, bu
       <div class="brand"><a href="https://www.total.dev/"><img src="{{asset('images/total-logo.png')}}"
             alt="pasadena-playhouse-logo" srcset="">Total Developers</a></div>
     </div>
-
+    <div class="contact-section">
+      <h3>Get in Touch</h3>
+      <p>Have a question or want to collaborate? Feel free to reach out!</p>
+      <a href="mailto:mail@jaydonlynch.dev" class="contact-link">
+        mail@jaydonlynch.dev
+      </a>
+    </div>
   </div>
   @endsection
 
@@ -68,6 +74,33 @@ I began my journey making websites and implementing solutions for businesses, bu
     .nav-item:hover {
       text-decoration-color: #000 !important;
       color: #000 !important;
+    }
+    .contact-section {
+      margin-top: 3rem;
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid #eee;
+    }
+
+    .contact-section h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-link {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      color: #000;
+      text-decoration: none;
+      border: 2px solid #000;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-link:hover {
+      background-color: #000;
+      color: #fff;
     }
   </style>
 </body>
