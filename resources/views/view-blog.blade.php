@@ -22,13 +22,17 @@
         <meta name ="image" property="og:image" content="{{ asset('images/' . $post->image)}}" />
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ url()->current() }}">
+        
 
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="{{$post->title}}">
         <meta name="twitter:description" content="{{Str::limit(strip_tags($post->blogHTML), 160)}}">
         <meta name="twitter:image" content="{{ asset('images/' . $post->image)}}">
-        
+        <meta property="og:image:secure_url"  content="{{ asset('images/' . $post->image)}}" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@_jdn__" />
+        <meta name="twitter:creator" content="@_jdn__" />
         <!-- Robots -->
         <meta name="robots" content="index, follow">
         
@@ -51,10 +55,10 @@
     <section class="blog-content ql-editor">
         <!-- Ensure proper rendering of code blocks -->
         {!! str_replace(
-            'class="ql-code-block-container"',
-            ' class="ql-code-block-container" style="background-color: #000; color: #fff; padding: 12px; border-radius: 1rem;"',
-            html_entity_decode($post->blogHTML)
-        ) !!}
+    'class="ql-code-block-container"',
+    ' class="ql-code-block-container" style="background-color: #000; color: #fff; padding: 12px; border-radius: 1rem;"',
+    html_entity_decode($post->blogHTML)
+) !!}
     </section>
 
 @endsection
