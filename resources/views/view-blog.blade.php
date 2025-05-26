@@ -101,11 +101,6 @@
             border-radius: 5px;
             overflow: auto; /* Enable scrolling for long code blocks */
         }
-        .ql-ui {
-            display: none !important;
-            margin: 1rem;
-        }
-
         .ql-editor code {
             display: block;
             font-family: monospace;
