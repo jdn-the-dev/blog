@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Post;
-
+use App\Models\SurveyResponse;
 class AdminPostController extends Controller
 {
     /**
@@ -96,7 +96,9 @@ class AdminPostController extends Controller
     public function adminPostIndex()
     {
         $posts = Post::orderBy('created_at', 'desc')->get(); // Sort by creation date in ascending order
-        return view('admin.posts.index', compact('posts'));
+        $respondents = SurveyResponse::orderBy('created_at', 'desc')->get();
+
+        return view('admin.posts.index', compact('posts', 'respondents'));
     }
 
 }
