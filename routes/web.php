@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageGalleryController;
 use App\Http\Controllers\AdminPostController;
-
+use App\Http\Controllers\SurveyController;
 
 //['register' => false]
 Auth::routes(['register' => false]);
@@ -33,5 +33,11 @@ Route::delete('/delete-image/{id}', [ImageGalleryController::class, 'destroy'])-
 
 Route::get('/admin/posts', [AdminPostController::class, 'adminPostIndex'])->name('admin.posts.index');
 
+//Surveys
 
 
+Route::get('/survey', [SurveyController::class, 'show'])
+     ->name('survey');
+
+Route::post('/survey', [SurveyController::class, 'submit'])
+     ->name('survey.submit');
