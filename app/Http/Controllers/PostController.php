@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Validation\Rules\Exists;
 
 class PostController extends Controller
 {
@@ -43,17 +44,33 @@ class PostController extends Controller
             'categories' => $categories,
         ]);
     }
+    // Get the latest post
+    public function getLatestPost()
+    {
+        $post = Post::orderBy('created_at', 'desc')->first();
+        // If no posts are available, redirect to the blog page with an error message
+        if ($post === null) {
+            return redirect()->route('blog')->with('error', 'No posts available.');
+        }
+        if (!auth()->user()) {
+            $post->increment('view_count');
+        }
 
+        return view('view-blog', ['post' => $post]);
+    }
 
     //Get post based on ID
     public function getPost($id){
         $post = Post::find($id);
 
+        if ($post === null) {
+            return redirect()->route('blog')->with('error', 'Post not found.');
+        }
+
         if(!auth()->user()){
             $post->increment('view_count');
         }
         
-     
         return view('view-blog', ['post' => $post]);
     }
 

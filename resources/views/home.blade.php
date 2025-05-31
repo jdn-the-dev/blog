@@ -157,5 +157,8 @@
           document.getElementById('loading-indicator').style.display = 'none';
         });
       </script>
+    <footer style="text-align:center; color:#fff; margin-top:2rem; text-shadow: 1px 1px 2px #000; position: absolute; bottom: 0; width: -webkit-fill-available; padding: 1rem; ">
+        <span>&copy; {{ date('Y') }} Jaydon Lynch. All rights reserved.</span> 
+    </footer>
 </body>
 </html>

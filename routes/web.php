@@ -13,6 +13,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::get('/blog', [App\Http\Controllers\PostController::class, 'index'])->name('blog');
 Route::get('/blog/{id?}', [App\Http\Controllers\PostController::class, 'getPost'])->name('blog');
+Route::get('/new', [App\Http\Controllers\PostController::class, 'getLatestPost'])->name('latest-post');
+
 
 Route::get('/resources', [App\Http\Controllers\ResourcesController::class, 'index'])->name('resources');
 Route::get('/resource/wallpaper', [App\Http\Controllers\ResourcesController::class, 'wallpaperIndex'])->name('resource');
