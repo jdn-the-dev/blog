@@ -22,10 +22,12 @@
     @section('content')
 
 
-    <div class="d-flex flex-wrap justify-content-center resources-container" id="resources-container">
-        <resource-card title="Free Wallpaper" resource="wallpaper" icon="wallpaper_slideshow"></resource-card>
-        <resource-card title="My Mind (Creativity)" resource="my-mind" icon="fluorescent"></resource-card>
-    </div>
+        <div class="d-flex flex-wrap justify-content-center resources-container" id="resources-container">
+            <resource-card title="Free Wallpaper" resource="wallpaper" icon="wallpaper_slideshow"></resource-card>
+            <resource-card title="My Mind (Creativity)" resource="my-mind" icon="fluorescent"></resource-card>
+            <resource-card title="Literature & Philosophy" resource="literature-&-philosophy" icon="chess"></resource-card>
+
+        </div>
     @endsection
     <style>
         .nav-item:hover {

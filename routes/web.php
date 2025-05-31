@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageGalleryController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\SurveyController;
+use App\Http\Controllers\AffiliateController;
 
 //['register' => false]
 Auth::routes(['register' => false]);
@@ -20,6 +21,9 @@ Route::get('/resources', [App\Http\Controllers\ResourcesController::class, 'inde
 Route::get('/resource/wallpaper', [App\Http\Controllers\ResourcesController::class, 'wallpaperIndex'])->name('resource');
 Route::get('/resource/my-mind', [ImageGalleryController::class, 'index'])->name('my-mind');
 Route::get('/my-mind', [ImageGalleryController::class, 'index'])->name('my-mind');
+Route::get('/resource/literature-&-philosophy', [AffiliateController::class, 'index'])->name('literature&philosophy');
+Route::get('/literature-&-philosophy', [AffiliateController::class, 'index'])->name('literature&philosophy');
+
 
 Route::get('/create-post', [App\Http\Controllers\AdminPostController::class, 'createIndex'])->name('create-post');
 Route::get('/delete/{id?}', [App\Http\Controllers\AdminPostController::class, 'deletePost'])->name('delete-post');
