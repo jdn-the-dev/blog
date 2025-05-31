@@ -76,11 +76,10 @@
 }
 .blog-image {
     img {
-        min-height: 200px;
+        min-height: 150px;
         display: block;
         z-index: 1;
         width: 100%;
-        min-height: 200px;
         -o-object-fit: cover;
         object-fit: cover;
     }
