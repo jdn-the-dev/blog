@@ -14,6 +14,51 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <style>
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+            background-image: none;
+            position: relative;
+        }
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before,
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            right: 6px;
+            height: 3px;
+            background: #fff;
+            border-radius: 2px;
+            top: 50%;
+            width: 18px;
+        }
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
+            transform: translateY(-50%) rotate(45deg);
+        }
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
+            transform: translateY(-50%) rotate(-45deg);
+        }
+        .navbar-toggler .navbar-toggler-icon {
+            background-color: #fff !important;
+            background-image: none !important;
+            width: 30px;
+            position: relative;
+            transition: background 0.2s;
+        }
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+            background: none !important;
+        }
+        @media screen and (max-width: 768px) {
+            .navbar-brand {
+                font-size: 29px;
+                padding-top: 2rem !important;
+            }
+            .mobile-header {
+                margin-top: -12px;
+            }
+            
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -83,4 +128,23 @@
         </main>
     </div>
 </body>
+<script>
+    // Prevent scrolling when navbar is open (expanded)
+    document.addEventListener('DOMContentLoaded', function() {
+        var navbarCollapse = document.getElementById('navbarSupportedContent');
+        var html = document.documentElement;
+        var body = document.body;
+
+        if (navbarCollapse) {
+            navbarCollapse.addEventListener('show.bs.collapse', function () {
+                html.style.overflow = 'hidden';
+                body.style.overflow = 'hidden';
+            });
+            navbarCollapse.addEventListener('hide.bs.collapse', function () {
+                html.style.overflow = '';
+                body.style.overflow = '';
+            });
+        }
+    });
+</script>
 </html>

@@ -196,87 +196,76 @@
                 {{-- 1. Experience Level --}}
                 <div class="survey-question">
                     <label for="experience">1. Describe your experience with cryptocurrency trading</label>
-                    <select id="experience" name="experience" class="survey-input">
-                        <option value="" disabled {{ old('experience') ? '' : 'selected' }}>Select your level…</option>
-                        <option value="none" {{ old('experience') == 'none' ? 'selected' : '' }}>None (I’ve never traded)
-                        </option>
-                        <option value="beginner" {{ old('experience') == 'beginner' ? 'selected' : '' }}>Beginner</option>
-                        <option value="intermediate" {{ old('experience') == 'intermediate' ? 'selected' : '' }}>Intermediate
-                        </option>
-                        <option value="advanced" {{ old('experience') == 'advanced' ? 'selected' : '' }}>Advanced</option>
+                    <select id="experience" name="experience" class="survey-input" disabled>
+                        <option value="" disabled selected>Select your level…</option>
+                        <option value="none">None (I’ve never traded)</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
                     </select>
-                    @error('experience')<span class="survey-error">{{ $message }}</span>@enderror
                 </div>
 
                 {{-- 2. Live Trade History --}}
                 <div class="survey-question">
                     <p>2. Have you ever executed a live crypto trade?</p>
                     <div class="survey-radio-group">
-                        <label><input type="radio" name="has_traded" value="yes" {{ old('has_traded') == 'yes' ? 'checked' : '' }}> Yes</label>
-                        <label><input type="radio" name="has_traded" value="no" {{ old('has_traded') == 'no' ? 'checked' : '' }}> No</label>
+                        <label><input type="radio" name="has_traded" value="yes" disabled> Yes</label>
+                        <label><input type="radio" name="has_traded" value="no" disabled> No</label>
                     </div>
-                    @error('has_traded')<span class="survey-error">{{ $message }}</span>@enderror
                 </div>
 
                 {{-- 3. Frequency --}}
                 <div class="survey-question">
                     <label for="frequency">3. How often do you check crypto prices or market news?</label>
-                    <select id="frequency" name="frequency" class="survey-input">
-                        <option value="" disabled {{ old('frequency') ? '' : 'selected' }}>Select frequency…</option>
-                        <option value="never" {{ old('frequency') == 'never' ? 'selected' : '' }}>Never</option>
-                        <option value="weekly" {{ old('frequency') == 'weekly' ? 'selected' : '' }}>Weekly</option>
-                        <option value="daily" {{ old('frequency') == 'daily' ? 'selected' : '' }}>Daily</option>
-                        <option value="multiple" {{ old('frequency') == 'multiple' ? 'selected' : '' }}>Several times a day
-                        </option>
+                    <select id="frequency" name="frequency" class="survey-input" disabled>
+                        <option value="" disabled selected>Select frequency…</option>
+                        <option value="never">Never</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="daily">Daily</option>
+                        <option value="multiple">Several times a day</option>
                     </select>
-                    @error('frequency')<span class="survey-error">{{ $message }}</span>@enderror
                 </div>
 
                 {{-- 4. Risk Tolerance --}}
                 <div class="survey-question">
                     <label for="risk_tolerance">4. What best describes your risk tolerance?</label>
-                    <select id="risk_tolerance" name="risk_tolerance" class="survey-input">
-                        <option value="" disabled {{ old('risk_tolerance') ? '' : 'selected' }}>Select risk level…</option>
-                        <option value="low" {{ old('risk_tolerance') == 'low' ? 'selected' : '' }}>Low (prefer minimal risk)
-                        </option>
-                        <option value="medium" {{ old('risk_tolerance') == 'medium' ? 'selected' : '' }}>Medium (some risk is
-                            OK)</option>
-                        <option value="high" {{ old('risk_tolerance') == 'high' ? 'selected' : '' }}>High (comfortable with
-                            volatility)</option>
+                    <select id="risk_tolerance" name="risk_tolerance" class="survey-input" disabled>
+                        <option value="" disabled selected>Select risk level…</option>
+                        <option value="low">Low (prefer minimal risk)</option>
+                        <option value="medium">Medium (some risk is OK)</option>
+                        <option value="high">High (comfortable with volatility)</option>
                     </select>
-                    @error('risk_tolerance')<span class="survey-error">{{ $message }}</span>@enderror
                 </div>
 
                 {{-- 5. Primary Motivation --}}
                 <div class="survey-question">
                     <label for="motivation">5. What is your primary motivation for considering crypto trading?</label>
-                    <select id="motivation" name="motivation" class="survey-input">
-                        <option value="" disabled {{ old('motivation') ? '' : 'selected' }}>Select motivation…</option>
-                        <option value="profit" {{ old('motivation') == 'profit' ? 'selected' : '' }}>Short-term profit
-                        </option>
-                        <option value="long_term" {{ old('motivation') == 'long_term' ? 'selected' : '' }}>Long-term
-                            investment</option>
-                        <option value="learning" {{ old('motivation') == 'learning' ? 'selected' : '' }}>Learning new
-                            technology</option>
-                        <option value="diversify" {{ old('motivation') == 'diversify' ? 'selected' : '' }}>Diversify my
-                            portfolio</option>
-                        <option value="other" {{ old('motivation') == 'other' ? 'selected' : '' }}>Other</option>
+                    <select id="motivation" name="motivation" class="survey-input" disabled>
+                        <option value="" disabled selected>Select motivation…</option>
+                        <option value="profit">Short-term profit</option>
+                        <option value="long_term">Long-term investment</option>
+                        <option value="learning">Learning new technology</option>
+                        <option value="diversify">Diversify my portfolio</option>
+                        <option value="other">Other</option>
                     </select>
-                    @error('motivation')<span class="survey-error">{{ $message }}</span>@enderror
                 </div>
 
                 {{-- 6. Email Field --}}
                 <div class="survey-question">
                     <label for="email">6. What is your email?</label>
                     <input type="email" id="email" name="email" class="input-minimal" placeholder="Enter your email"
-                        value="{{ old('email') }}" required>
-                    @error('email')<span class="survey-error">{{ $message }}</span>@enderror
+                        disabled>
                 </div>
 
-                {{-- Submit --}}
+                {{-- Survey Closed Message --}}
                 <div class="survey-submit-wrapper">
-                    <button type="submit" class="survey-submit">
-                        Submit & Enter $40 Drawing
+                    <div
+                        style="background: #ffebee; color: #c62828; padding: 1rem; border-radius: 1rem; font-weight: bold;">
+                        🚫 This survey has ended. Thank you to everyone who participated!
+                    </div>
+                    <button type="submit" class="survey-submit" disabled
+                        style="margin-top: 1rem; background: #888; cursor: not-allowed;">
+                        Submissions Closed
                     </button>
                 </div>
             </form>
