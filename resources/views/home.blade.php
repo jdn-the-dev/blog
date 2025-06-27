@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">        
         <!-- Title and Description -->
-        <meta name="description" content="Explore blog posts, tips, and resources on tech/programming. ">
+        <meta property="description"
+        content="Exploring the intersection of life and productivity, I share insights as a developer and creator. From coding and creative projects to practical tips for living a balanced, productive life, my journey is all about growth, innovation, and inspiring others." />
         
         <!-- Keywords -->
         <meta name="keywords" content="Jaydon Lynch, web development, Rust, JavaScript, CSS, Python, coding tips, programming, web design">

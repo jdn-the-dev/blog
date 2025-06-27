@@ -6,7 +6,7 @@
         <meta name="description" content="{{Str::limit(strip_tags($post->blogHTML), 160)}}">
         
         <!-- Keywords -->
-        <meta name="keywords" content="Jaydon Lynch, web development, Rust, JavaScript, CSS, Python, coding tips, programming, web design">
+        <meta name="keywords" content="Jaydon, web development, Rust, JavaScript, CSS, Python, coding tips, programming, web design, Lynch, {{$post->category}}">  
         <meta name="thumbnail" content="{{ asset('images/' . $post->image)}}" />
 
         <!-- Author -->
