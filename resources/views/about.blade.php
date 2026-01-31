@@ -31,35 +31,28 @@
 <body>
   @extends('layouts.app')
 
-  @section('content')
+@section('content')
   <div class="about-container">
     <span class="about">
-      <b>I'm Jaydon – a developer and creator.</b>
+      <b>Jaydon Lynch ~ Developer and Quantitative Thinker</b>
       <br><br>
 
-I began my journey making websites and implementing solutions for businesses, but over time, I’ve expanded into a mix of things—from building applications and exploring blockchain technology to creating tutorials on coding and finance. I also make YouTube content that dives into tech, business, and crypto. <br><br>Along the way, I’ve embraced the intersection of life and productivity, sharing insights as a developer and creator. From coding and creative projects to practical tips for living a balanced, productive life, my journey is focused on growth, innovation, and inspiring others. Born in Jamaica and raised in the U.S., I’m passionate about bringing creativity and innovation into every project I work on.<br><br>I post every last Saturday of the month.
+      Today, my focus spans development and finance through hands-on projects and real-world problem solving. Along the way, I’ve leaned into the connection between work, productivity, and life as a developer - sharing insights that reflect both technical growth and personal discipline. Born in Jamaica and raised in the U.S., I bring creativity, curiosity, and a systems-driven mindset to everything I build.
 
-
-
-
-
+      <br>
 
     <div></div>
     <br>
-    <div class="previous-title"><span>Previous work at:</span></div>
     <div class="brand-container">
-      <div class="brand"><a href="https://www.microsoft.com/en-us/about"><img src="{{ asset('images/microsoft.png') }}"
-            alt="microsoft-logo" srcset="">Microsoft</a></div>
-      <div class="brand"><a href="https://www.carnegiehall.org/About"><img
-            src="{{ asset('images/The-Carnegie-Hall-Logo.png') }}" alt="carnegie-hall-logo" srcset="">Carnegie Hall</a>
+      <div class="brand">
+        <a href="https://www.total.dev/">
+          <img src="{{ asset('images/total-logo.png') }}"
+               alt="Total Development Lab">
+          Total Development Lab
+        </a>
       </div>
-      <div class="brand"><a href="https://www.pasadenaplayhouse.org/about/"><img src="{{ asset('images/pp-logo.png') }}"
-            alt="pasadena-playhouse-logo" srcset=""><br>Pasadena Playhouse</a></div>
-      <div class="brand"><a href="https://k12.sfsymphony.org/About-SFS"><img src="{{ asset('images/sf-symphony.png') }}"
-            alt="san-franciso-symphony-logo" srcset="" width="" height="">San Francisco Symphony</a></div>
-      <div class="brand"><a href="https://www.total.dev/"><img src="{{asset('images/total-logo.png')}}"
-            alt="pasadena-playhouse-logo" srcset="">Total Developers</a></div>
     </div>
+
     <div class="contact-section">
       <h3>Get in Touch</h3>
       <p>Have a question or want to collaborate? Feel free to reach out!</p>
@@ -68,7 +61,8 @@ I began my journey making websites and implementing solutions for businesses, bu
       </a>
     </div>
   </div>
-  @endsection
+@endsection
+
 
   <style>
     .nav-item:hover {
