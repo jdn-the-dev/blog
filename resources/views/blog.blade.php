@@ -4,7 +4,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog - JL</title>
+  <title>Blog - JL | Web Development Insights</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Insights, tips, and resources on tech, programming, and productivity by Jaydon Lynch - a developer and quantitative thinker. Explore development tutorials, coding practices, and real-world problem solving.">
+  <meta name="keywords" content="Jaydon Lynch, web development, Rust, JavaScript, CSS, Python, productivity, coding tips, programming, web design, tech insights, developer blog, quantitative thinking">
+  <meta name="author" content="Jaydon Lynch">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Blog - JL | Developer Insights & Programming Tips">
+  <meta property="og:description" content="Insights on tech, programming, and productivity from a developer and quantitative thinker. Real-world problem solving and technical growth.">
+  <meta property="og:url" content="{{ url()->current() }}">
+  <meta property="og:site_name" content="Jaydon Lynch">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Blog - JL | Developer Insights & Programming Tips">
+  <meta name="twitter:description" content="Insights on tech, programming, and productivity from a developer and quantitative thinker.">
+  <meta name="twitter:site" content="@_jdn__">
+  <meta name="twitter:creator" content="@_jdn__">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ url()->current() }}">
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://www.jaydonlynch.dev/favicon.ico" type="image/x-icon">
+
   <style>
     /* Loading Indicator Styles */
     #loading-indicator {

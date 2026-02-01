@@ -41,6 +41,34 @@
         
         <!-- Favicon -->
         <link rel="icon" href="https://www.jaydonlynch.dev/favicon.ico" type="image/x-icon">
+
+        <!-- JSON-LD Structured Data -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": "{{$post->title}}",
+            "description": "{{Str::limit(strip_tags($post->blogHTML), 160)}}",
+            "image": "{{ asset('images/' . $post->image)}}",
+            "author": {
+                "@type": "Person",
+                "name": "Jaydon Lynch",
+                "url": "https://jaydonlynch.dev/about"
+            },
+            "publisher": {
+                "@type": "Person",
+                "name": "Jaydon Lynch",
+                "url": "https://jaydonlynch.dev"
+            },
+            "datePublished": "{{$post->created_at->toIso8601String()}}",
+            "dateModified": "{{$post->updated_at->toIso8601String()}}",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "{{ url()->current() }}"
+            },
+            "keywords": "web development, Rust, JavaScript, CSS, Python, coding tips, programming, {{$post->category}}"
+        }
+        </script>
     </head>
 <body>
     @extends('layouts.app')

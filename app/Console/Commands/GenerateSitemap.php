@@ -20,19 +20,38 @@ class GenerateSitemap extends Command
     public function handle()
     {
         $sitemap = Sitemap::create()
-            ->add(Url::create('/')->setPriority(1.0))
-            ->add(Url::create('/home')->setPriority(0.8))
-            ->add(Url::create('/resource/my-mind')->setPriority(0.8))
-            ->add(Url::create('/my-mind')->setPriority(0.8))
-            ->add(Url::create('/blog')->setPriority(0.8))
-            ->add(Url::create('/about')->setPriority(0.8))
-            ->add(Url::create('/resource/wallpaper')->setPriority(0.8));
+            ->add(Url::create('/')
+                ->setPriority(1.0)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY))
+            ->add(Url::create('/home')
+                ->setPriority(0.8)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY))
+            ->add(Url::create('/resource/my-mind')
+                ->setPriority(0.8)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY))
+            ->add(Url::create('/my-mind')
+                ->setPriority(0.8)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY))
+            ->add(Url::create('/blog')
+                ->setPriority(0.8)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY))
+            ->add(Url::create('/about')
+                ->setPriority(0.8)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY))
+            ->add(Url::create('/resource/wallpaper')
+                ->setPriority(0.8)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY));
 
         // Loop through all blog posts and add them to the sitemap
         $blogPosts = Post::all();
 
         foreach ($blogPosts as $post) {
-            $sitemap->add(Url::create("/blog/{$post->id}")->setPriority(0.8));
+            $sitemap->add(
+                Url::create("/blog/{$post->id}")
+                    ->setPriority(0.8)
+                    ->setLastModificationDate($post->updated_at)
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
+            );
         }
 
         $sitemap->writeToFile(public_path('sitemap.xml'));
