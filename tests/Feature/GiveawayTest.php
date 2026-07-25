@@ -29,6 +29,8 @@ class GiveawayTest extends TestCase
         $this->get(route('giveaway.show'))
             ->assertOk()
             ->assertSee('Win $100')
+            ->assertSee('Investment account prize')
+            ->assertSee('After the winner accepts the invitation link, $100.00 USD will be deposited into that investment account.')
             ->assertSee('August 1, 2026');
     }
 
@@ -83,6 +85,24 @@ class GiveawayTest extends TestCase
         $this->post(route('giveaway.submit'), [])->assertForbidden();
     }
 
+    public function test_admin_identifies_an_invalid_campaign_date_range(): void
+    {
+        $campaign = GiveawayCampaign::current();
+        $campaign->update([
+            'is_active' => true,
+            'starts_at' => now()->addHour(),
+            'ends_at' => now(),
+        ]);
+
+        $this->assertSame('invalid', $campaign->fresh()->status());
+
+        $this->actingAs(User::factory()->create())
+            ->get(route('admin.posts.index'))
+            ->assertOk()
+            ->assertSee('Invalid dates')
+            ->assertSee('deadline must be after the start time');
+    }
+
     public function test_admin_entry_list_requires_login(): void
     {
         $this->get(route('admin.giveaway.index'))
@@ -114,6 +134,36 @@ class GiveawayTest extends TestCase
         $this->assertFalse($campaign->is_active);
         $this->assertSame('Try Titan. Win $250.', $campaign->headline);
         $this->assertSame('2026-08-08 21:30', $campaign->ends_at->timezone('America/New_York')->format('Y-m-d H:i'));
+    }
+
+    public function test_admin_can_upload_an_icon_for_the_giveaway(): void
+    {
+        Storage::fake('public');
+        $admin = User::factory()->create();
+
+        $this->actingAs($admin)->put(route('admin.giveaway.update'), [
+            'name' => 'Titan summer giveaway',
+            'headline' => 'Try Titan. Win $100.',
+            'description' => 'A campaign with an icon.',
+            'icon' => UploadedFile::fake()->image('giveaway-icon.png', 128, 128),
+            'prize_amount' => 100,
+            'starts_at' => '2026-07-25T09:00',
+            'ends_at' => '2026-08-01T23:59',
+            'minimum_age' => 18,
+            'eligible_region' => 'Worldwide',
+        ])->assertRedirect(route('admin.giveaway.edit'));
+
+        $campaign = GiveawayCampaign::current()->fresh();
+        $this->assertNotNull($campaign->icon_path);
+        Storage::disk('public')->assertExists($campaign->icon_path);
+
+        $this->get(route('giveaway.show'))
+            ->assertOk()
+            ->assertSee(route('giveaway.icon'));
+
+        $this->get(route('giveaway.icon'))
+            ->assertOk()
+            ->assertHeader('content-type', 'image/png');
     }
 
     public function test_admin_can_archive_campaign_and_start_a_fresh_entry_pool(): void

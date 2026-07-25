@@ -27,10 +27,20 @@
             </div>
         </div>
 
-        <div class="alert {{ $campaign->isOpen() ? 'alert-success' : 'alert-secondary' }} d-flex flex-wrap justify-content-between align-items-center gap-2">
+        @php($campaignStatus = $campaign->status())
+        <div class="alert {{ $campaignStatus === 'open' ? 'alert-success' : ($campaignStatus === 'invalid' ? 'alert-danger' : 'alert-secondary') }} d-flex flex-wrap justify-content-between align-items-center gap-2">
             <div>
                 <strong>{{ $campaign->name }}</strong>
-                <span class="ms-2">{{ $campaign->isOpen() ? 'Accepting entries' : 'Closed or paused' }}</span>
+                <span class="ms-2">
+                    @switch($campaignStatus)
+                        @case('open') Accepting entries @break
+                        @case('scheduled') Scheduled to open @break
+                        @case('paused') Paused in settings @break
+                        @case('ended') Entry period ended @break
+                        @case('invalid') Invalid entry period: deadline must be after the start time @break
+                        @default Archived
+                    @endswitch
+                </span>
             </div>
             <span>Deadline: {{ $campaign->ends_at->timezone('America/New_York')->format('M j, Y g:i A') }} ET</span>
         </div>
@@ -84,15 +94,22 @@
 
             <div class="d-flex flex-column gap-3 mt-4">
                 @foreach($campaignHistory as $historicalCampaign)
+                    @php($historicalStatus = $historicalCampaign->status())
                     <details class="card border-0 bg-light p-3 p-md-4" {{ $selectedCampaign->id === $historicalCampaign->id ? 'open' : '' }}>
                         <summary class="fw-bold d-flex flex-wrap align-items-center gap-2" style="cursor:pointer">
                             <span>{{ $historicalCampaign->name }}</span>
-                            @if($historicalCampaign->closed_at)
+                            @if($historicalStatus === 'archived')
                                 <span class="badge bg-secondary">Archived</span>
-                            @elseif($historicalCampaign->isOpen())
+                            @elseif($historicalStatus === 'open')
                                 <span class="badge bg-success">Open</span>
+                            @elseif($historicalStatus === 'scheduled')
+                                <span class="badge bg-info text-dark">Scheduled</span>
+                            @elseif($historicalStatus === 'paused')
+                                <span class="badge bg-warning text-dark">Paused</span>
+                            @elseif($historicalStatus === 'ended')
+                                <span class="badge bg-secondary">Ended</span>
                             @else
-                                <span class="badge bg-warning text-dark">Paused/ended</span>
+                                <span class="badge bg-danger">Invalid dates</span>
                             @endif
                             <span class="badge bg-secondary">{{ number_format($historicalCampaign->entries_count) }} {{ \Illuminate\Support\Str::plural('participant', $historicalCampaign->entries_count) }}</span>
                         </summary>

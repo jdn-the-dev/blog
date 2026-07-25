@@ -4,7 +4,7 @@
 <div class="container py-5" style="max-width: 760px">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <p class="text-uppercase small mb-1">Titan campaign</p>
+            <p class="text-uppercase small mb-1">Giveaway campaign</p>
             <h1 class="mb-0">Campaign settings</h1>
         </div>
         <a href="{{ route('admin.posts.index') }}#giveaways">Back to Admin</a>
@@ -21,7 +21,13 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.giveaway.update') }}" method="POST" class="card border-0 bg-light p-4">
+    @if($campaign->status() === 'invalid')
+        <div class="alert alert-danger">
+            The deadline is earlier than the campaign start time. Choose a deadline after the start time to open this campaign.
+        </div>
+    @endif
+
+    <form action="{{ route('admin.giveaway.update') }}" method="POST" enctype="multipart/form-data" class="card border-0 bg-light p-4">
         @csrf
         @method('PUT')
 
@@ -49,6 +55,24 @@
             @error('description') <div class="invalid-feedback">{{ $message }}</div> @enderror
         </div>
 
+        <div class="mb-3">
+            <label class="form-label fw-bold" for="icon">Campaign logo</label>
+            @if($campaign->icon_path)
+                <div class="mb-2">
+                    <img src="{{ route('giveaway.icon') }}" alt="Current giveaway icon" style="width: 80px; height: 80px; object-fit: contain;">
+                </div>
+            @endif
+            <input class="form-control @error('icon') is-invalid @enderror" id="icon" name="icon" type="file" accept=".jpg,.jpeg,.png,.webp,.gif,image/*">
+            <div class="form-text">JPG, PNG, WEBP, or GIF. Maximum 2 MB. Uploading a new icon replaces the current one.</div>
+            @error('icon') <div class="invalid-feedback">{{ $message }}</div> @enderror
+            @if($campaign->icon_path)
+                <div class="form-check mt-2">
+                    <input class="form-check-input" id="remove_icon" name="remove_icon" type="checkbox" value="1">
+                    <label class="form-check-label" for="remove_icon">Remove the current icon</label>
+                </div>
+            @endif
+        </div>
+
         <div class="row">
             <div class="col-md-4 mb-3">
                 <label class="form-label fw-bold" for="prize_amount">Prize amount ($)</label>
@@ -68,7 +92,7 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label fw-bold" for="download_url">Titan download URL</label>
+            <label class="form-label fw-bold" for="download_url">Download destination URL</label>
             <input class="form-control @error('download_url') is-invalid @enderror" id="download_url" name="download_url" type="url" value="{{ old('download_url', $campaign->download_url) }}" placeholder="https://">
             @error('download_url') <div class="invalid-feedback">{{ $message }}</div> @enderror
         </div>

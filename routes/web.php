@@ -47,6 +47,8 @@ Route::post('/survey', [SurveyController::class, 'submit'])
 
 Route::get('/giveaway', [GiveawayController::class, 'show'])
     ->name('giveaway.show');
+Route::get('/giveaway/icon', [GiveawayController::class, 'icon'])
+    ->name('giveaway.icon');
 Route::post('/giveaway', [GiveawayController::class, 'submit'])
     ->middleware('throttle:5,1')
     ->name('giveaway.submit');

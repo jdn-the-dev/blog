@@ -12,6 +12,7 @@ class GiveawayCampaign extends Model
         'name',
         'headline',
         'description',
+        'icon_path',
         'prize_amount',
         'download_url',
         'starts_at',
@@ -56,6 +57,31 @@ class GiveawayCampaign extends Model
             && !$this->closed_at
             && now()->gte($this->entryStartsAt())
             && now()->lte($this->ends_at);
+    }
+
+    public function status(): string
+    {
+        if ($this->closed_at) {
+            return 'archived';
+        }
+
+        if ($this->ends_at->lte($this->entryStartsAt())) {
+            return 'invalid';
+        }
+
+        if (!$this->is_active) {
+            return 'paused';
+        }
+
+        if (now()->lt($this->entryStartsAt())) {
+            return 'scheduled';
+        }
+
+        if (now()->gt($this->ends_at)) {
+            return 'ended';
+        }
+
+        return 'open';
     }
 
     public function entryStartsAt()

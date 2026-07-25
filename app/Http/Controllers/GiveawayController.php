@@ -25,6 +25,17 @@ class GiveawayController extends Controller
         ]);
     }
 
+    public function icon()
+    {
+        $campaign = GiveawayCampaign::current();
+        abort_unless(
+            $campaign->icon_path && Storage::disk('public')->exists($campaign->icon_path),
+            404
+        );
+
+        return Storage::disk('public')->response($campaign->icon_path);
+    }
+
     public function submit(Request $request)
     {
         $campaign = GiveawayCampaign::current();
@@ -92,6 +103,7 @@ class GiveawayController extends Controller
             'name' => ['required', 'string', 'max:100'],
             'headline' => ['required', 'string', 'max:160'],
             'description' => ['required', 'string', 'max:1000'],
+            'icon' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp,gif', 'max:2048'],
             'prize_amount' => ['required', 'numeric', 'min:1', 'max:1000000'],
             'download_url' => ['nullable', 'url:http,https', 'max:2048'],
             'starts_at' => ['required', 'date'],
@@ -101,6 +113,7 @@ class GiveawayController extends Controller
             'winner_message' => ['nullable', 'string', 'max:500'],
         ]);
 
+        unset($validated['icon']);
         $validated['is_active'] = $request->boolean('is_active');
         $validated['starts_at'] = CarbonImmutable::parse(
             $validated['starts_at'],
@@ -110,7 +123,21 @@ class GiveawayController extends Controller
             $validated['ends_at'],
             'America/New_York'
         )->utc();
+        $oldIconPath = $campaign->icon_path;
+
+        if ($request->boolean('remove_icon')) {
+            $validated['icon_path'] = null;
+        }
+
+        if ($request->hasFile('icon')) {
+            $validated['icon_path'] = $request->file('icon')->store('giveaway-icons', 'public');
+        }
+
         $campaign->update($validated);
+
+        if ($oldIconPath && $oldIconPath !== $campaign->icon_path) {
+            Storage::disk('public')->delete($oldIconPath);
+        }
 
         return redirect()
             ->route('admin.giveaway.edit')
@@ -145,9 +172,10 @@ class GiveawayController extends Controller
             $previous = GiveawayCampaign::latest('id')->first();
 
             return GiveawayCampaign::create([
-                'name' => 'New Titan giveaway',
-                'headline' => 'Download. Review. Win $100.',
-                'description' => 'Try the Titan app, leave an honest review, and send us your proof for a chance to win.',
+                'name' => 'New giveaway',
+                'headline' => 'Participate for a chance to win $100.',
+                'description' => 'Complete the campaign requirement and send us your proof for a chance to win.',
+                'icon_path' => $previous?->icon_path,
                 'prize_amount' => $previous?->prize_amount ?? 100,
                 'download_url' => $previous?->download_url,
                 'starts_at' => now(),
