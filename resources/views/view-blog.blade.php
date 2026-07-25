@@ -40,8 +40,14 @@
     <header class="blog-post__header">
         <h1>{{ $post->title }}</h1>
         <p class="blog-post__meta">
-            <time datetime="{{ $post->created_at->toDateString() }}">{{ $post->created_at->format('M j, Y') }}</time>
-            <span aria-label="{{ number_format($post->view_count) }} views">· <i class="fa fa-eye" aria-hidden="true"></i> {{ number_format($post->view_count) }}</span>
+            <time datetime="{{ $post->created_at->toDateString() }}">
+                <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                <span>{{ $post->created_at->format('F j, Y') }}</span>
+            </time>
+            <span aria-label="{{ number_format($post->view_count) }} views">
+                <i class="fa-regular fa-eye" aria-hidden="true"></i>
+                <span>{{ number_format($post->view_count) }} {{ Str::plural('view', $post->view_count) }}</span>
+            </span>
         </p>
         @if ($post->image)
             <div class="blog-post__hero-frame">
