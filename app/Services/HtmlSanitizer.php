@@ -132,30 +132,7 @@ class HtmlSanitizer
             }
 
             $this->cleanChildren($node);
-
-            if (in_array($tag, ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li', 'blockquote'], true)) {
-                $this->trimLeadingWhitespace($node);
-            }
         }
-    }
-
-    private function trimLeadingWhitespace(DOMNode $node): bool
-    {
-        foreach ($node->childNodes as $child) {
-            if ($child->nodeType === XML_TEXT_NODE) {
-                $child->nodeValue = preg_replace('/^(?:[ \t\r\n\f\v]|\x{00A0})+/u', '', $child->nodeValue);
-
-                return true;
-            }
-
-            if ($child instanceof DOMElement && ! in_array(strtolower($child->tagName), ['pre', 'code'], true)) {
-                if ($this->trimLeadingWhitespace($child)) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
     }
 
     private function safeStyle(string $style): string

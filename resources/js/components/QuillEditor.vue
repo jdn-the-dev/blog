@@ -27,7 +27,7 @@ export default {
                 keyboard: {
                     bindings: {
                         indentWithTab: {
-                            key: 9,
+                            key: 'Tab',
                             shiftKey: false,
                             handler(range) {
                                 const tab = '\u2003\u2003\u2003\u2003';
@@ -40,13 +40,15 @@ export default {
                             }
                         },
                         outdentWithTab: {
-                            key: 9,
+                            key: 'Tab',
                             shiftKey: true,
                             handler(range) {
-                                const before = this.quill.getText(Math.max(0, range.index - 4), 4);
-                                if (before === '\u2003\u2003\u2003\u2003') {
-                                    this.quill.deleteText(range.index - 4, 4, 'user');
-                                    this.quill.setSelection(range.index - 4, 0, 'silent');
+                                const tab = '\u2003\u2003\u2003\u2003';
+                                const start = Math.max(0, range.index - tab.length);
+                                const before = this.quill.getText(start, tab.length);
+                                if (before === tab) {
+                                    this.quill.deleteText(start, tab.length, 'user');
+                                    this.quill.setSelection(start, 0, 'silent');
                                 }
                                 return false;
                             }
@@ -88,7 +90,7 @@ export default {
 
         this.editor.root.setAttribute(
             'aria-description',
-            'Press Tab to insert spacing on the current line. Use the toolbar to indent a whole paragraph.'
+            'Press Tab to insert spacing at the cursor. Press Shift and Tab to remove the preceding tab spacing.'
         );
         this.editor.root.addEventListener('paste', this.pasteAsPlainText);
         this.editor.on("text-change", this.update);
@@ -115,7 +117,7 @@ export default {
         },
 
         update() {
-            const content = this.normalizeBlockIndentation(this.editor.root.innerHTML);
+            const content = this.editor.root.innerHTML;
             document.querySelector("#floatingTextarea").value = content;
             this.$emit(
                 "update:modelValue",
@@ -124,24 +126,6 @@ export default {
                     : ""
             );
         },
-
-        normalizeBlockIndentation(html) {
-            const template = document.createElement('template');
-            template.innerHTML = html;
-
-            template.content
-                .querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, blockquote')
-                .forEach((block) => {
-                    const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT);
-                    const firstText = walker.nextNode();
-                    if (firstText) {
-                        firstText.textContent = firstText.textContent.replace(/^[\s\u00a0]+/u, '');
-                    }
-                });
-
-            return template.innerHTML;
-        },
-
     },
     beforeUnmount() {
         this.editor?.root.removeEventListener('paste', this.pasteAsPlainText);

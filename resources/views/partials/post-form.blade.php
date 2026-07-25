@@ -27,7 +27,7 @@
                 <quill-editor placeholder="{{ old('blogHTML', $post->blogHTML ?? '') }}"></quill-editor>
                 <input type="hidden" name="blogHTML" id="floatingTextarea"
                        value="{{ old('blogHTML', $post->blogHTML ?? '') }}">
-                <div class="form-text">Tab inserts spacing only at the cursor. Use the toolbar’s indent buttons only when you want to move an entire paragraph.</div>
+                <div class="form-text">Tab inserts spacing at the cursor without moving the entire paragraph. Press Shift+Tab to remove the preceding tab spacing.</div>
             </div>
         </div>
     </div>

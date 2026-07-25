@@ -67,7 +67,7 @@ class HtmlSanitizerTest extends TestCase
         $this->assertStringContainsString('<p>Safe</p>', $clean);
     }
 
-    public function test_it_removes_first_line_spacing_but_keeps_block_indentation(): void
+    public function test_it_preserves_intentional_spacing_and_block_indentation(): void
     {
         $clean = (new HtmlSanitizer)->sanitize(
             '<p>&nbsp;&nbsp;First line wraps normally</p>'
@@ -75,8 +75,8 @@ class HtmlSanitizerTest extends TestCase
             .'<pre><code>&nbsp;&nbsp;code indentation</code></pre>'
         );
 
-        $this->assertStringContainsString('<p>First line wraps normally</p>', $clean);
-        $this->assertStringContainsString('<p class="ql-indent-2">Indented paragraph</p>', $clean);
+        $this->assertMatchesRegularExpression('/<p>(?:\x{00A0}|&nbsp;){2}First line wraps normally<\/p>/u', $clean);
+        $this->assertMatchesRegularExpression('/<p class="ql-indent-2">(?:\x{00A0}|&nbsp;)Indented paragraph<\/p>/u', $clean);
         $this->assertMatchesRegularExpression('/<code>(?:\x{00A0}|&nbsp;){2}code indentation<\/code>/u', $clean);
     }
 
