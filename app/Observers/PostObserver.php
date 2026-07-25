@@ -21,7 +21,7 @@ class PostObserver
      */
     public function updated(Post $post): void
     {
-        //
+        Artisan::call('sitemap:generate');
     }
 
     /**

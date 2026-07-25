@@ -8,6 +8,9 @@ use App\Models\Post;
 use App\Models\SurveyResponse;
 use App\Models\GiveawayCampaign;
 use App\Models\GiveawayEntry;
+use App\Services\HtmlSanitizer;
+use Illuminate\Validation\Rule;
+
 class AdminPostController extends Controller
 {
     /**
@@ -21,18 +24,11 @@ class AdminPostController extends Controller
     }
     
     //Delete post based on ID
-    public function deletePost($id) {
-        try {
-            $post = Post::find($id);
-            if ($post) {
-                $post->delete();
-            }
+    public function deletePost(Post $post)
+    {
+        $post->delete();
 
-        } catch (\Throwable $th) {
-            throw $th;
-        }
         return redirect()->route('blog')->with('success', 'Post deleted successfully.');
-
     }
     //Create Post Screen
     public function createIndex()
@@ -40,59 +36,83 @@ class AdminPostController extends Controller
         return view('create-post');
     }
     // Store post
-    public function store(Request $request) {
-        // validations
-        $request->validate([
-        'title' => 'required',
-        'blogHTML' => 'required',
-        'category' => 'required',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-    
-        $post = new Post;
-    
-        $file_name = time() . '.' . request()->image->getClientOriginalExtension();
-        request()->image->move(public_path('images'), $file_name);
-    
-        $post->id = Str::uuid();
-        $post->title = $request->title;
-        $post->blogHTML = $request->blogHTML;
-        $post->image = $file_name;
-        $post->category = $request->category;
-        $post->created_at = $request->date;
-    
-        $post->save();
-        return redirect()->route('blog')->with('success', 'Post created successfully.');
-    }
-    public function editIndex($id)
+    public function store(Request $request, HtmlSanitizer $sanitizer)
     {
-        $post = Post::find($id);
+        $data = $this->validated($request);
+        $post = new Post($this->attributes($data, $sanitizer));
+        $post->id = (string) Str::uuid();
+        $post->image = $this->storeImage($request);
+        $post->save();
+
+        return redirect()->route('posts.show', $post)->with('success', 'Post created successfully.');
+    }
+
+    public function editIndex(Post $post)
+    {
         return view('edit-post', ['post' => $post]);
     }
     // Edit post based on ID
 
-    public function editPost(Request $request, $id) {
-        // validations
-        $request->validate([
-        'title' => 'required',
-        'blogHTML' => 'required',
-        ]);
-    
-        $post = Post::find($id);
-    
-        $post->title = $request->title;
-        $post->blogHTML = $request->blogHTML; 
-        $post->category = $request->category;
-
-        if($request->image){
-            $file_name = time() . '.' . request()->image->getClientOriginalExtension();
-            request()->image->move(public_path('images'), $file_name);
-
-            $post->image = $file_name;
+    public function editPost(Request $request, Post $post, HtmlSanitizer $sanitizer)
+    {
+        $data = $this->validated($request, $post);
+        $post->fill($this->attributes($data, $sanitizer, $post));
+        if ($request->hasFile('image')) {
+            $post->image = $this->storeImage($request);
         }
         $post->save();
 
-        return redirect()->route('blog')->with('success', 'Post created successfully.');
+        return redirect()->route('posts.show', $post)->with('success', 'Post updated successfully.');
+    }
+
+    private function validated(Request $request, ?Post $post = null): array
+    {
+        return $request->validate([
+            'title' => ['required', 'string', 'max:200'],
+            'slug' => ['nullable', 'string', 'max:200', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', Rule::unique('posts')->ignore($post?->id)],
+            'blogHTML' => ['required', 'string', 'max:2000000'],
+            'category' => ['required', 'string', 'max:500'],
+            'seo_title' => ['nullable', 'string', 'max:70'],
+            'meta_description' => ['nullable', 'string', 'max:160'],
+            'image_alt' => ['nullable', 'string', 'max:180'],
+            'date' => ['nullable', 'date'],
+            'image' => [$post ? 'nullable' : 'required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:4096'],
+        ]);
+    }
+
+    private function attributes(array $data, HtmlSanitizer $sanitizer, ?Post $post = null): array
+    {
+        return [
+            'title' => trim($data['title']),
+            'slug' => $this->uniqueSlug($data['slug'] ?: $data['title'], $post),
+            'blogHTML' => $sanitizer->sanitize($data['blogHTML']),
+            'category' => collect(explode(',', $data['category']))->map(fn ($value) => trim($value))->filter()->unique()->values()->all(),
+            'seo_title' => $data['seo_title'] ?: null,
+            'meta_description' => $data['meta_description'] ?: null,
+            'image_alt' => $data['image_alt'] ?: null,
+            'created_at' => $data['date'] ?? now(),
+        ];
+    }
+
+    private function uniqueSlug(string $value, ?Post $post = null): string
+    {
+        $base = Str::slug($value) ?: 'post';
+        $slug = $base;
+        $suffix = 2;
+        while (Post::where('slug', $slug)->when($post, fn ($query) => $query->whereKeyNot($post->getKey()))->exists()) {
+            $slug = $base.'-'.$suffix++;
+        }
+
+        return $slug;
+    }
+
+    private function storeImage(Request $request): string
+    {
+        $file = $request->file('image');
+        $name = Str::uuid().'.'.$file->extension();
+        $file->move(public_path('images'), $name);
+
+        return $name;
     }
 
     public function adminPostIndex(Request $request)

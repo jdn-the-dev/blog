@@ -1,37 +1,16 @@
 @extends('layouts.app')
+
+@section('title', 'Create post')
+
 @section('content')
-<div class="container">
-  <h1>Create</h1>
-  <section class="mt-3">
+<div class="container py-4">
+    <header class="mb-4">
+        <p class="text-uppercase small mb-1">Admin</p>
+        <h1>Create post</h1>
+    </header>
     <form method="post" action="{{ route('store') }}" enctype="multipart/form-data">
-      @csrf
-      <!-- Error message when data is not inputted -->
-      @if ($errors->any())
-        <div class="alert alert-danger">
-          <ul>
-            @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-            @endforeach
-          </ul>
-        </div>
-      @endif
-      <div class="card p-3">
-        <label for="floatingInput">Date</label>
-        <input class="form-control" type="date" name="date">
-        <label for="floatingInput">Title</label>
-        <input class="form-control" type="text" name="title">
-        <label for="floatingInput">Category</label>
-        <input class="form-control" type="text" name="category">
-        <label for="floatingTextArea">Content</label>
-        <quill-editor placeholder=""></quill-editor>
-        <input type="hidden" name="blogHTML" id="floatingTextarea">
-        <label for="formFile" class="form-label">Add Image</label>
-        <img src="" alt="" class="img-blog">
-        <input class="form-control" type="file" name="image">
-      </div>
-      <button class="btn btn-secondary m-3">Save</button>
+        @csrf
+        @include('partials.post-form')
     </form>
-  </section>
-    
 </div>
 @endsection

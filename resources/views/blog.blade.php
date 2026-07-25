@@ -286,15 +286,15 @@
     @else
       <div class="admin-items-container">
       <div class="admin-edit">
-      <a class="nav-link" href="/edit-post/{{$post->id}}"><i class="fa-solid fa-pencil"></i></a>
+      <a class="nav-link" href="{{ route('edit-post', $post) }}"><i class="fa-solid fa-pencil"></i></a>
       </div>
       <div class="admin-delete">
       <a class="nav-link" href="/delete/{{$post->id}}"><i class="fa-solid fa-trash"></i></a>
       </div>
       </div>
     @endguest
-      <blog-card id="{{$post->id}}" title="{{$post->title}}" image="{{ asset('images/' . $post->image)}}"
-      categories="{{$post->category}}" blogHTML="{{ $post->blogHTML }}"
+      <blog-card id="{{$post->slug}}" title="{{$post->title}}" image="{{ asset('images/' . $post->image)}}"
+      categories="{{ implode(',', $post->category ?? []) }}" blogHTML="{{ $post->blogHTML }}"
       date="{{date_format(date_create($post->created_at), "M j, Y")}}"></blog-card>
     </div>
   @endforeach

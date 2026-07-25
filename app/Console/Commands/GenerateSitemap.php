@@ -47,7 +47,7 @@ class GenerateSitemap extends Command
 
         foreach ($blogPosts as $post) {
             $sitemap->add(
-                Url::create("/blog/{$post->id}")
+                Url::create(route('posts.show', $post, false))
                     ->setPriority(0.8)
                     ->setLastModificationDate($post->updated_at)
                     ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)

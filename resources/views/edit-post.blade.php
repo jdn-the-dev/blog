@@ -1,25 +1,17 @@
 @extends('layouts.app')
+
+@section('title', 'Edit '.$post->title)
+
 @section('content')
-<div class="container">
-  <h1>Edit</h1>
-  <section class="mt-3">
-    <form method="post" action="/edit-post/{{$post->id}}" enctype="multipart/form-data">
-      @csrf
-      <div class="card p-3">
-        <label for="floatingInput">Title</label>
-        <input class="form-control" type="text" name="title" value="{{$post->title}}">
-        <label for="floatingInput">Category</label>
-        <input class="form-control" type="text" name="category" value="{{$post->category}}">
-        <label for="floatingTextArea">Content</label>
-        <quill-editor placeholder="{{$post->blogHTML}}"></quill-editor>
-        <input type="hidden" name="blogHTML" id="floatingTextarea">
-        <label for="formFile" class="form-label">Add Image</label>
-        <img src="" alt="" class="img-blog">
-        <input class="form-control" type="file" name="image">
-      </div>
-      <button class="btn btn-secondary m-3">Save</button>
+<div class="container py-4">
+    <header class="mb-4">
+        <p class="text-uppercase small mb-1">Admin</p>
+        <h1>Edit post</h1>
+    </header>
+    <form method="post" action="{{ route('posts.update', $post) }}" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+        @include('partials.post-form')
     </form>
-  </section>
-    
 </div>
 @endsection

@@ -13,7 +13,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::get('/blog', [App\Http\Controllers\PostController::class, 'index'])->name('blog');
-Route::get('/blog/{id?}', [App\Http\Controllers\PostController::class, 'getPost'])->name('blog');
+Route::get('/blog/{post}', [App\Http\Controllers\PostController::class, 'getPost'])->name('posts.show');
 Route::get('/new', [App\Http\Controllers\PostController::class, 'getLatestPost'])->name('latest-post');
 
 
@@ -21,12 +21,6 @@ Route::get('/resources', [App\Http\Controllers\ResourcesController::class, 'inde
 Route::get('/resource/wallpaper', [App\Http\Controllers\ResourcesController::class, 'wallpaperIndex'])->name('resource');
 Route::get('/resource/my-mind', [ImageGalleryController::class, 'index'])->name('my-mind');
 Route::get('/my-mind', [ImageGalleryController::class, 'index'])->name('my-mind');
-
-Route::get('/create-post', [App\Http\Controllers\AdminPostController::class, 'createIndex'])->name('create-post');
-Route::get('/delete/{id?}', [App\Http\Controllers\AdminPostController::class, 'deletePost'])->name('delete-post');
-Route::get('/edit-post/{id}', [App\Http\Controllers\AdminPostController::class, 'editIndex'])->name('edit-post');
-Route::post('/edit-post/{id}', [App\Http\Controllers\AdminPostController::class, 'editPost'])->name('edit-post');
-Route::match(array('POST'), '/store', [App\Http\Controllers\AdminPostController::class, 'store'])->name('store');
 
 Route::post('/upload', [ImageGalleryController::class, 'upload'])->name('upload');
 Route::delete('/delete-image/{id}', [ImageGalleryController::class, 'destroy'])->name('image.destroy');
@@ -54,6 +48,11 @@ Route::post('/giveaway', [GiveawayController::class, 'submit'])
     ->name('giveaway.submit');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/create-post', [AdminPostController::class, 'createIndex'])->name('create-post');
+    Route::post('/store', [AdminPostController::class, 'store'])->name('store');
+    Route::get('/edit-post/{post}', [AdminPostController::class, 'editIndex'])->name('edit-post');
+    Route::put('/edit-post/{post}', [AdminPostController::class, 'editPost'])->name('posts.update');
+    Route::delete('/posts/{post}', [AdminPostController::class, 'deletePost'])->name('delete-post');
     Route::get('/admin/giveaway', [GiveawayController::class, 'index'])
         ->name('admin.giveaway.index');
     Route::get('/admin/giveaway/settings', [GiveawayController::class, 'edit'])

@@ -1,11 +1,9 @@
 <template>
-    <div ref="editor" class="editor ql-editor"></div>
+    <div ref="editor" class="editor"></div>
 </template>
 
 <script>
 import Quill from "quill";
-import "quill/dist/quill.core.css";
-import "quill/dist/quill.bubble.css";
 import "quill/dist/quill.snow.css";
 import ImageResize from 'quill-image-resize-module-react';
 import hljs from 'highlight.js';
@@ -26,6 +24,35 @@ export default {
     mounted() {
         this.editor = new Quill(this.$refs.editor, {
             modules: {
+                keyboard: {
+                    bindings: {
+                        indentWithTab: {
+                            key: 9,
+                            shiftKey: false,
+                            handler(range) {
+                                const tab = '\u2003\u2003\u2003\u2003';
+                                if (range.length) {
+                                    this.quill.deleteText(range.index, range.length, 'user');
+                                }
+                                this.quill.insertText(range.index, tab, 'user');
+                                this.quill.setSelection(range.index + tab.length, 0, 'silent');
+                                return false;
+                            }
+                        },
+                        outdentWithTab: {
+                            key: 9,
+                            shiftKey: true,
+                            handler(range) {
+                                const before = this.quill.getText(Math.max(0, range.index - 4), 4);
+                                if (before === '\u2003\u2003\u2003\u2003') {
+                                    this.quill.deleteText(range.index - 4, 4, 'user');
+                                    this.quill.setSelection(range.index - 4, 0, 'silent');
+                                }
+                                return false;
+                            }
+                        }
+                    }
+                },
                 toolbar: [
                     [{ 'font': [] }],
                     [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
@@ -50,69 +77,104 @@ export default {
             theme: 'snow',
         });
 
-        this.editor.root.innerHTML = this.placeholder ?? "";
-        this.editor.on("text-change", this.update);
+        const initialContent = (this.placeholder ?? '').trim();
+        if (initialContent) {
+            this.editor.clipboard.dangerouslyPasteHTML(initialContent, 'silent');
+        } else {
+            this.editor.setContents([{ insert: '\n' }], 'silent');
+            this.editor.removeFormat(0, this.editor.getLength(), 'silent');
+            this.editor.setSelection(0, 0, 'silent');
+        }
 
-        // Parse language information from the HTML content
-        const content = this.editor.root.innerHTML;
-        this.editor.root.innerHTML = content.replace(
-            /<pre><code class="language-([^"]*)">([\s\S]*?)<\/code><\/pre>/g,
-            (match, language, code) => {
-                return `<div class="ql-code-block" data-language="${language}">${this.decodeSpaces(code)}</div>`;
-            }
+        this.editor.root.setAttribute(
+            'aria-description',
+            'Press Tab to insert spacing on the current line. Use the toolbar to indent a whole paragraph.'
         );
+        this.editor.root.addEventListener('paste', this.pasteAsPlainText);
+        this.editor.on("text-change", this.update);
+        this.editor.history.clear();
+        this.update();
     },
 
     methods: {
+        pasteAsPlainText(event) {
+            const text = event.clipboardData?.getData('text/plain');
+            if (typeof text !== 'string') {
+                return;
+            }
+
+            event.preventDefault();
+            const range = this.editor.getSelection(true);
+            const normalized = text.replace(/\r\n?/g, '\n');
+
+            if (range.length) {
+                this.editor.deleteText(range.index, range.length, 'user');
+            }
+            this.editor.insertText(range.index, normalized, 'user');
+            this.editor.setSelection(range.index + normalized.length, 0, 'silent');
+        },
+
         update() {
-            let content = this.editor.root.innerHTML;
-            // Convert Quill's div-based code block to <pre><code> to preserve tabs and spaces
-            content = content.replace(
-                /<div class="ql-code-block" data-language="([^"]*)">([\s\S]*?)<\/div>/g,
-                (match, language, code) => {
-                    return `<pre><code class="language-${language}">${this.encodeSpaces(code)}</code></pre>`;
-                }
-            );
-            let new_content = this.replaceSpacesInQlCodeBlocks(content);
-            document.querySelector("#floatingTextarea").value = new_content;
-            console.log(new_content)
+            const content = this.normalizeBlockIndentation(this.editor.root.innerHTML);
+            document.querySelector("#floatingTextarea").value = content;
             this.$emit(
                 "update:modelValue",
-                this.editor.getText() ? content : ""
+                this.editor.getText().trim() || this.editor.root.querySelector('img, iframe')
+                    ? content
+                    : ""
             );
         },
 
-        encodeSpaces(text) {
-            // Encode spaces and tabs for proper storage in the database
-            return text
-                .replace(/^ +/gm, match => '&nbsp;'.repeat(match.length)) // Encode leading spaces
-                .replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;') // Replace tabs with 4 spaces
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;");
+        normalizeBlockIndentation(html) {
+            const template = document.createElement('template');
+            template.innerHTML = html;
+
+            template.content
+                .querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, blockquote')
+                .forEach((block) => {
+                    const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT);
+                    const firstText = walker.nextNode();
+                    if (firstText) {
+                        firstText.textContent = firstText.textContent.replace(/^[\s\u00a0]+/u, '');
+                    }
+                });
+
+            return template.innerHTML;
         },
-        replaceSpacesInQlCodeBlocks(htmlContent) {
-            // Replace regular spaces within .ql-code-block content with &nbsp;
-            return htmlContent.replace(
-                /<div class="ql-code-block"[^>]*>([\s\S]*?)<\/div>/g,
-                (match, codeLine) => {
-                    // Replace each space character with &nbsp;
-                    const modifiedContent = codeLine.replace(/(?<!<[^>]*) /g, '&nbsp;');
-                    return `<div class="ql-code-block">${modifiedContent}</div>`;
-                }
-            );
-        },
-        decodeSpaces(text) {
-            return text
-                .replace(/&nbsp;/g, ' ')
-                .replace(/&lt;/g, '<')
-                .replace(/&gt;/g, '>');
-        },
+
+    },
+    beforeUnmount() {
+        this.editor?.root.removeEventListener('paste', this.pasteAsPlainText);
     },
 };
 </script>
 
 <style>
 .editor {
+    min-height: 0;
+}
+
+.editor .ql-editor {
     min-height: 500px;
+    padding: 1.25rem;
+    line-height: 1.6;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.editor .ql-editor p,
+.editor .ql-editor ol,
+.editor .ql-editor ul,
+.editor .ql-editor blockquote,
+.editor .ql-editor pre {
+    margin: 0 0 1rem;
+}
+
+.editor .ql-editor p:last-child,
+.editor .ql-editor ol:last-child,
+.editor .ql-editor ul:last-child,
+.editor .ql-editor blockquote:last-child,
+.editor .ql-editor pre:last-child {
+    margin-bottom: 0;
 }
 </style>

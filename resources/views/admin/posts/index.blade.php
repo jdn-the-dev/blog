@@ -188,14 +188,23 @@
         <h2 class="mb-3">All posts</h2>
         <div class="table-responsive">
             <table class="table table-bordered align-middle">
-                <thead><tr><th>ID</th><th>Title</th><th>View count</th><th>Created</th></tr></thead>
+                <thead><tr><th>Title</th><th>View count</th><th>Created</th><th class="text-end">Actions</th></tr></thead>
                 <tbody>
                 @foreach($posts as $post)
                     <tr>
-                        <td>{{ $post->id }}</td>
-                        <td>{{ $post->title }}</td>
+                        <td><a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a></td>
                         <td>{{ $post->view_count }}</td>
                         <td>{{ $post->created_at->format('Y-m-d H:i:s') }}</td>
+                        <td class="text-end">
+                            <div class="d-inline-flex gap-2">
+                                <a class="btn btn-sm btn-outline-dark" href="{{ route('edit-post', $post) }}">Edit</a>
+                                <form method="POST" action="{{ route('delete-post', $post) }}" onsubmit="return confirm('Delete this post?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
