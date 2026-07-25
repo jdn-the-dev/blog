@@ -45,11 +45,12 @@ app.component('my-mind-card', MyMindCard);
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
 document.querySelectorAll('.nav-link').forEach(link => {
-    link.onclick = function(event) {
-      // Prevent the default action
-      event.preventDefault();
-      document.getElementById('loading-indicator').style.display = 'flex';
-    };
+    link.addEventListener('click', () => {
+      const loadingIndicator = document.getElementById('loading-indicator');
+      if (loadingIndicator) {
+        loadingIndicator.style.display = 'flex';
+      }
+    });
   });
 app.mount('#app');
 

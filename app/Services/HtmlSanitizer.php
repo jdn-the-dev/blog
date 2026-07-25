@@ -114,7 +114,7 @@ class HtmlSanitizer
 
             $pre = $document->createElement('pre');
             $code = $document->createElement('code');
-            if ($language !== '' && preg_match('/^[a-z0-9_+-]+$/', $language)) {
+            if ($language !== '' && $language !== 'plain' && preg_match('/^[a-z0-9_+-]+$/', $language)) {
                 $code->setAttribute('class', 'language-'.$language);
             }
             $code->appendChild($document->createTextNode(implode("\n", $lines)));

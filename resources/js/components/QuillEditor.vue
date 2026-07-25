@@ -3,26 +3,20 @@
 </template>
 
 <script>
+import { markRaw } from 'vue';
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import ImageResize from 'quill-image-resize-module-react';
-import hljs from 'highlight.js';
-import php from 'highlight.js/lib/languages/php';
-
-import "highlight.js/styles/atom-one-dark.css";
-
-hljs.registerLanguage('php', php);
 Quill.register('modules/imageResize', ImageResize);
 
 export default {
-    props: ['placeholder'],
     data() {
         return {
             editor: null,
         };
     },
     mounted() {
-        this.editor = new Quill(this.$refs.editor, {
+        this.editor = markRaw(new Quill(this.$refs.editor, {
             modules: {
                 keyboard: {
                     bindings: {
@@ -70,52 +64,34 @@ export default {
                     ['link', 'image', 'video'],
                     ['clean']
                 ],
-                syntax: { hljs },
                 imageResize: {
                     modules: ['Resize', 'DisplaySize']
                 }
             },
             placeholder: 'Compose an epic...',
             theme: 'snow',
-        });
+        }));
 
-        const initialContent = (this.placeholder ?? '').trim();
+        const initialContent = (document.querySelector('#floatingTextarea')?.value ?? '').trim();
         if (initialContent) {
             this.editor.clipboard.dangerouslyPasteHTML(initialContent, 'silent');
         } else {
             this.editor.setContents([{ insert: '\n' }], 'silent');
             this.editor.removeFormat(0, this.editor.getLength(), 'silent');
-            this.editor.setSelection(0, 0, 'silent');
         }
+        this.editor.setSelection(null, 'silent');
+        window.getSelection()?.removeAllRanges();
 
         this.editor.root.setAttribute(
             'aria-description',
             'Press Tab to insert spacing at the cursor. Press Shift and Tab to remove the preceding tab spacing.'
         );
-        this.editor.root.addEventListener('paste', this.pasteAsPlainText);
         this.editor.on("text-change", this.update);
         this.editor.history.clear();
         this.update();
     },
 
     methods: {
-        pasteAsPlainText(event) {
-            const text = event.clipboardData?.getData('text/plain');
-            if (typeof text !== 'string') {
-                return;
-            }
-
-            event.preventDefault();
-            const range = this.editor.getSelection(true);
-            const normalized = text.replace(/\r\n?/g, '\n');
-
-            if (range.length) {
-                this.editor.deleteText(range.index, range.length, 'user');
-            }
-            this.editor.insertText(range.index, normalized, 'user');
-            this.editor.setSelection(range.index + normalized.length, 0, 'silent');
-        },
-
         update() {
             const content = this.editor.root.innerHTML;
             document.querySelector("#floatingTextarea").value = content;
@@ -126,9 +102,6 @@ export default {
                     : ""
             );
         },
-    },
-    beforeUnmount() {
-        this.editor?.root.removeEventListener('paste', this.pasteAsPlainText);
     },
 };
 </script>

@@ -1,6 +1,10 @@
 @php
     $editing = isset($post);
     $categories = $editing ? implode(', ', $post->category ?? []) : '';
+    $initialBlogHTML = old(
+        'blogHTML',
+        $editing ? app(\App\Services\HtmlSanitizer::class)->sanitize($post->blogHTML) : ''
+    );
 @endphp
 
 @if ($errors->any())
@@ -24,9 +28,8 @@
             </div>
             <div>
                 <label class="form-label" for="floatingTextarea">Content</label>
-                <quill-editor placeholder="{{ old('blogHTML', $post->blogHTML ?? '') }}"></quill-editor>
-                <input type="hidden" name="blogHTML" id="floatingTextarea"
-                       value="{{ old('blogHTML', $post->blogHTML ?? '') }}">
+                <quill-editor></quill-editor>
+                <textarea class="d-none" name="blogHTML" id="floatingTextarea">{{ $initialBlogHTML }}</textarea>
                 <div class="form-text">Tab inserts spacing at the cursor without moving the entire paragraph. Press Shift+Tab to remove the preceding tab spacing.</div>
             </div>
         </div>

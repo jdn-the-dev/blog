@@ -285,12 +285,20 @@
       @guest
     @else
       <div class="admin-items-container">
-      <div class="admin-edit">
-      <a class="nav-link" href="{{ route('edit-post', $post) }}"><i class="fa-solid fa-pencil"></i></a>
-      </div>
-      <div class="admin-delete">
-      <a class="nav-link" href="/delete/{{$post->id}}"><i class="fa-solid fa-trash"></i></a>
-      </div>
+	      <div class="admin-edit">
+	      <a href="{{ route('edit-post', $post) }}" aria-label="Edit {{ $post->title }}"><i class="fa-solid fa-pencil"></i></a>
+	      </div>
+	      <div class="admin-delete">
+	      <form method="POST" action="{{ route('delete-post', $post) }}"
+	            onsubmit="return confirm('Delete this post permanently?')">
+	        @csrf
+	        @method('DELETE')
+	        <button type="submit" class="btn btn-link p-0 text-danger"
+	                aria-label="Delete {{ $post->title }}">
+	          <i class="fa-solid fa-trash" aria-hidden="true"></i>
+	        </button>
+	      </form>
+	      </div>
       </div>
     @endguest
       <blog-card id="{{$post->slug}}" title="{{$post->title}}" image="{{ asset('images/' . $post->image)}}"
