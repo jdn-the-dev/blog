@@ -1,0 +1,32 @@
+[project]
+name = "blog"
+language = "php"
+framework = "laravel"
+runtime = "php"
+entrypoints = ["artisan"]
+
+[commands]
+run = ["php", "artisan", "serve"]
+build = ["composer", "install"]
+test = ["php", "artisan", "test"]
+
+[environment]
+env_file = ".env"
+mode = "development"
+
+[logging]
+directory = "storage/logs"
+patterns = ["*.log", "*.jsonl"]
+structured = true
+
+[monitoring]
+enabled = true
+health_endpoint = "/health"
+
+[ai]
+enabled = true
+context_directory = ".total/ai"
+
+[maintenance]
+reports_directory = ".total/reports"
+retention_days = 7
