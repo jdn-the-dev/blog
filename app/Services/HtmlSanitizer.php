@@ -52,6 +52,7 @@ class HtmlSanitizer
             return '';
         }
 
+        $this->normalizeQuillCodeBlocks($root, $document);
         $this->cleanChildren($root);
 
         $clean = '';
@@ -60,6 +61,81 @@ class HtmlSanitizer
         }
 
         return trim($clean);
+    }
+
+    private function normalizeQuillCodeBlocks(DOMElement $root, DOMDocument $document): void
+    {
+        $containers = [];
+        foreach ($root->getElementsByTagName('div') as $div) {
+            if (in_array('ql-code-block-container', preg_split('/\s+/', $div->getAttribute('class')), true)) {
+                $containers[] = $div;
+            }
+        }
+
+        foreach ($containers as $container) {
+            $lines = [];
+            $language = '';
+
+            foreach (iterator_to_array($container->childNodes) as $child) {
+                if (! $child instanceof DOMElement) {
+                    continue;
+                }
+
+                $classes = preg_split('/\s+/', $child->getAttribute('class'));
+                if (in_array('ql-code-block', $classes, true)) {
+                    if ($language === '') {
+                        $language = strtolower(trim($child->getAttribute('data-language')));
+                    }
+                    $lines[] = $this->plainCodeText($child->textContent);
+                    continue;
+                }
+
+                if (strtolower($child->tagName) === 'pre') {
+                    $code = null;
+                    foreach ($child->childNodes as $preChild) {
+                        if ($preChild instanceof DOMElement && strtolower($preChild->tagName) === 'code') {
+                            $code = $preChild;
+                            break;
+                        }
+                    }
+                    if (! $code) {
+                        continue;
+                    }
+                    if ($language === '' && preg_match('/(?:^|\s)language-([a-z0-9_+-]+)/i', $code->getAttribute('class'), $match)) {
+                        $language = strtolower($match[1]);
+                    }
+                    $lines[] = $this->plainCodeText($code->textContent);
+                }
+            }
+
+            if ($lines === []) {
+                continue;
+            }
+
+            $pre = $document->createElement('pre');
+            $code = $document->createElement('code');
+            if ($language !== '' && preg_match('/^[a-z0-9_+-]+$/', $language)) {
+                $code->setAttribute('class', 'language-'.$language);
+            }
+            $code->appendChild($document->createTextNode(implode("\n", $lines)));
+            $pre->appendChild($code);
+            $container->parentNode?->replaceChild($pre, $container);
+        }
+    }
+
+    private function plainCodeText(string $line): string
+    {
+        if (! str_contains($line, '<')) {
+            return $line;
+        }
+
+        if (preg_match('/^\s*<br\s*\/?>\s*$/i', $line)) {
+            return '';
+        }
+
+        $line = preg_replace('/<br\s*\/?>/i', "\n", $line);
+
+        return strip_tags(html_entity_decode($line, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
     }
 
     private function cleanChildren(DOMNode $parent): void

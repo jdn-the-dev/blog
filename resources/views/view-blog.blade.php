@@ -56,6 +56,6 @@
             </div>
         @endif
     </header>
-    <div class="blog-content ql-editor">{!! $post->blogHTML !!}</div>
+    <div class="blog-content ql-editor">{!! app(\App\Services\HtmlSanitizer::class)->sanitize($post->blogHTML) !!}</div>
 </article>
 @endsection

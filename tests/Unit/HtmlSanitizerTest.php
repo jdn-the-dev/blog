@@ -86,4 +86,38 @@ class HtmlSanitizerTest extends TestCase
 
         $this->assertStringContainsString("\u{2003}\u{2003}\u{2003}\u{2003}One line", $clean);
     }
+
+    public function test_it_normalizes_quill_code_blocks_and_removes_escaped_highlight_markup(): void
+    {
+        $html = '<div class="ql-code-block-container">'
+            .'<select class="ql-ui"><option>Python</option></select>'
+            .'<div class="ql-code-block" data-language="python">'
+            .'&lt;span class="ql-token hljs-keyword"&gt;print&lt;/span&gt;("hello")'
+            .'</div><div class="ql-code-block" data-language="python">next_line()</div>'
+            .'</div>';
+
+        $clean = (new HtmlSanitizer)->sanitize($html);
+
+        $this->assertStringContainsString('<pre><code class="language-python">print("hello")'."\n".'next_line()</code></pre>', $clean);
+        $this->assertStringNotContainsString('ql-code-block', $clean);
+        $this->assertStringNotContainsString('&lt;span', $clean);
+        $this->assertStringNotContainsString('<select', $clean);
+    }
+
+    public function test_it_repairs_legacy_quill_code_saved_as_multiple_pre_elements(): void
+    {
+        $html = '<div class="ql-code-block-container">'
+            .'<option value="plain">Plain</option><option value="python">Python</option>'
+            .'<pre><code class="language-python">&lt;span class="ql-token hljs-keyword"&gt;print&lt;/span&gt;("hello")</code></pre>'
+            .'<pre><code class="language-python">&lt;br&gt;</code></pre>'
+            .'<pre><code class="language-python">next_line()</code></pre>'
+            .'</div>';
+
+        $clean = (new HtmlSanitizer)->sanitize($html);
+
+        $this->assertStringContainsString('<pre><code class="language-python">print("hello")'."\n\n".'next_line()</code></pre>', $clean);
+        $this->assertStringNotContainsString('Plain', $clean);
+        $this->assertStringNotContainsString('&lt;span', $clean);
+        $this->assertSame(1, substr_count($clean, '<pre>'));
+    }
 }

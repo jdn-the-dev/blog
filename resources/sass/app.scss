@@ -343,11 +343,43 @@
 .blog-content .ql-indent-8.ql-direction-rtl { padding-right: 32rem !important; }
 .blog-content pre {
   overflow-x: auto;
-  padding: 1rem;
-  border-radius: .75rem;
-  background: #111;
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid #2d333b;
+  border-radius: .625rem;
+  background: #0d1117;
   color: #f8f8f2;
-  white-space: pre-wrap;
+  font-size: .9rem;
+  line-height: 1.65;
+  tab-size: 4;
+  white-space: pre;
+}
+.blog-content pre code {
+  display: block;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  white-space: inherit;
+}
+.blog-content .ql-code-block-container {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: .625rem;
+  background: #0d1117;
+  color: #f8f8f2;
+  font: .9rem/1.65 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  white-space: pre;
+}
+.blog-content .ql-code-block {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.blog-content .ql-code-block-container .ql-ui {
+  display: none;
 }
 .blog-content blockquote {
   border-left: 4px solid #34e7e4;
