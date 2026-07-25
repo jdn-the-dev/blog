@@ -6,6 +6,8 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/atom-one-dark.css';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -50,3 +52,7 @@ document.querySelectorAll('.nav-link').forEach(link => {
     };
   });
 app.mount('#app');
+
+document.querySelectorAll('.blog-content pre code').forEach((block) => {
+    hljs.highlightElement(block);
+});
