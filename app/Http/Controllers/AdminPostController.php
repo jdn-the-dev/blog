@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Post;
 use App\Models\SurveyResponse;
+use App\Models\GiveawayCampaign;
+use App\Models\GiveawayEntry;
 class AdminPostController extends Controller
 {
     /**
@@ -93,12 +95,37 @@ class AdminPostController extends Controller
         return redirect()->route('blog')->with('success', 'Post created successfully.');
     }
 
-    public function adminPostIndex()
+    public function adminPostIndex(Request $request)
     {
         $posts = Post::orderBy('created_at', 'desc')->get(); // Sort by creation date in ascending order
         $respondents = SurveyResponse::orderBy('created_at', 'desc')->get();
+        $campaign = GiveawayCampaign::current();
+        $campaignHistory = GiveawayCampaign::withCount('entries')->latest('id')->get();
+        $selectedCampaign = $request->filled('campaign')
+            ? $campaignHistory->firstWhere('id', (int) $request->input('campaign'))
+            : $campaign;
+        abort_unless($selectedCampaign, 404);
+        $giveawayEntries = GiveawayEntry::where('campaign_id', $selectedCampaign->id)->latest()->get();
+        $giveawayStats = [
+            'titan_total' => $campaign->entries()->count(),
+            'titan_today' => $campaign->entries()->where('created_at', '>=', now()->startOfDay())->count(),
+            'legacy_total' => $respondents->count(),
+            'unique_reach' => $giveawayEntries->pluck('email')
+                ->merge($respondents->pluck('email'))
+                ->map(fn ($email) => strtolower($email))
+                ->unique()
+                ->count(),
+        ];
 
-        return view('admin.posts.index', compact('posts', 'respondents'));
+        return view('admin.posts.index', compact(
+            'posts',
+            'respondents',
+            'campaign',
+            'campaignHistory',
+            'selectedCampaign',
+            'giveawayEntries',
+            'giveawayStats'
+        ));
     }
 
 }

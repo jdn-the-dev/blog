@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageGalleryController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\SurveyController;
+use App\Http\Controllers\GiveawayController;
 
 //['register' => false]
 Auth::routes(['register' => false]);
@@ -43,3 +44,24 @@ Route::get('/survey', [SurveyController::class, 'show'])
 
 Route::post('/survey', [SurveyController::class, 'submit'])
      ->name('survey.submit');
+
+Route::get('/giveaway', [GiveawayController::class, 'show'])
+    ->name('giveaway.show');
+Route::post('/giveaway', [GiveawayController::class, 'submit'])
+    ->middleware('throttle:5,1')
+    ->name('giveaway.submit');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/giveaway', [GiveawayController::class, 'index'])
+        ->name('admin.giveaway.index');
+    Route::get('/admin/giveaway/settings', [GiveawayController::class, 'edit'])
+        ->name('admin.giveaway.edit');
+    Route::put('/admin/giveaway/settings', [GiveawayController::class, 'update'])
+        ->name('admin.giveaway.update');
+    Route::post('/admin/giveaway/close', [GiveawayController::class, 'close'])
+        ->name('admin.giveaway.close');
+    Route::post('/admin/giveaway/new', [GiveawayController::class, 'startNew'])
+        ->name('admin.giveaway.new');
+    Route::get('/admin/giveaway/{entry}/proof', [GiveawayController::class, 'proof'])
+        ->name('admin.giveaway.proof');
+});

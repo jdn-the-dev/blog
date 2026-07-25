@@ -89,6 +89,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('giveaway.show') }}">{{ __('$100 Giveaway') }}</a>
+                        </li>
                         <li class="nav-item" style="text-decoration: none;">
                             <a class="nav-link" href="https://github.com/jdn-the-dev"><i class="fa-brands fa-github"></i></a>
                         </li>

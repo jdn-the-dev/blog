@@ -2,6 +2,10 @@
 
 return [
 
+    'titan' => [
+        'download_url' => env('TITAN_APP_URL'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
